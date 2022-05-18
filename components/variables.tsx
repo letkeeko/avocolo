@@ -5,7 +5,7 @@ export const COLOR = {
 };
 
 export const FONT = {
-  primary: "sans-serif",
+  primary: "Quicksand, sans-serif",
 };
 
 export const SCREEN = {
