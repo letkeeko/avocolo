@@ -161,7 +161,11 @@ const Footer = styled.footer`
 const Home: NextPage = () => {
   return (
     <Layout>
-      <SEO title="Mockup Website Color | Avocolo" description="TBD" />
+      <SEO
+        title="Mockup Website Color | Avocolo"
+        description="The easiest way, with ready responsive layout. Test your pallete right off the bat!"
+        pathname=""
+      />
       <Wrapper>
         <div className="absolute-logo">
           <Logo />
