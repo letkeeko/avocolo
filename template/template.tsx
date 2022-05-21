@@ -1,4 +1,3 @@
-import SEO from "../components/seo";
 import styled from "styled-components";
 import { SCREEN } from "../components/variables";
 import Nav from "./nav";

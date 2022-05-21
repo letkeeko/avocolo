@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import Heading from "../components/heading";
 import Text from "../components/text";
-import Image from "next/image";
 import { GiBananaPeeled, GiStrawberry, GiWatermelon } from "react-icons/gi";
 import { SCREEN, whileInView } from "../components/variables";
 import { defaultColor } from "./_static_data";
@@ -16,26 +15,50 @@ type WrapperProps = {
 const Wrapper = styled.section<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ textColor }) => textColor};
-  padding: 110px 0 130px 0;
+  padding: 60px 0 30px 0;
+  @media ${SCREEN.tablet} {
+    padding: 110px 0 90px 0;
+  }
+  @media ${SCREEN.laptop} {
+    padding: 110px 0 130px 0;
+  }
 
   .description {
     text-align: center;
     max-width: 750px;
-    margin: 0 auto 80px auto;
+    margin: 0 auto 40px auto;
+    @media ${SCREEN.tablet} {
+      margin: 0 auto 80px auto;
+    }
   }
 
   .item-list {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
     &__each {
-      width: 33.33%;
+      width: 100%;
       text-align: center;
-      padding: 0 50px;
+      padding: 0 24px 48px 24px;
+      @media ${SCREEN.tablet} {
+        width: 50%;
+        padding: 0 50px 50px 50px;
+      }
+
+      @media ${SCREEN.laptop} {
+        width: 33.33%;
+        padding: 0 50px;
+      }
 
       svg {
         color: ${({ iconColor }) => iconColor};
-        font-size: 5.3rem;
-        margin: 0 0 20px 0;
+        font-size: 4.3rem;
+        margin: 0 0 14px 0;
+        @media ${SCREEN.tablet} {
+          font-size: 5.3rem;
+          margin: 0 0 20px 0;
+        }
       }
     }
   }

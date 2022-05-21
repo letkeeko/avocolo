@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import Heading from "../components/heading";
 import Text from "../components/text";
-import Image from "next/image";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { SCREEN, whileInView } from "../components/variables";
 import { defaultColor, slideList } from "./_static_data";
@@ -19,42 +18,78 @@ type WrapperProps = {
 const Wrapper = styled.section<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ textColor }) => textColor};
-  padding: 130px 0 130px 0;
+  padding: 70px 0 70px 0;
+  @media ${SCREEN.tablet} {
+    padding: 110px 0 110px 0;
+  }
+  @media ${SCREEN.laptop} {
+    padding: 130px 0 130px 0;
+  }
 
   .description {
     text-align: center;
     max-width: 750px;
-    margin: 0 auto 80px auto;
+    margin: 0 auto 40px auto;
+    @media ${SCREEN.tablet} {
+      margin: 0 auto 60px auto;
+    }
+    @media ${SCREEN.laptop} {
+      margin: 0 auto 80px auto;
+    }
   }
 
   .slide-list {
-    min-height: 250px;
+    min-height: 356px;
     position: relative;
+    @media ${SCREEN.tablet} {
+      min-height: 300px;
+    }
+    @media ${SCREEN.laptop} {
+      min-height: 250px;
+    }
 
     &__each {
       position: absolute;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      @media ${SCREEN.tablet} {
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
       .flex-row {
-        display: flex;
-        justify-content: center;
+        @media ${SCREEN.tablet} {
+          display: flex;
+          justify-content: center;
+        }
 
         .col {
           &--one {
             img {
               display: block;
-              width: 120px;
+              width: 100px;
               border-radius: 50%;
+              margin: 0 auto 20px auto;
+              @media ${SCREEN.tablet} {
+                margin: 0;
+              }
+              @media ${SCREEN.laptop} {
+                width: 120px;
+              }
             }
           }
 
           &--two {
-            max-width: 640px;
-            width: max-content;
-            padding: 0 0 0 70px;
             position: relative;
+            @media ${SCREEN.tablet} {
+              width: max-content;
+              max-width: 430px;
+              padding: 0 0 0 35px;
+            }
+            @media ${SCREEN.laptop} {
+              max-width: 640px;
+              padding: 0 0 0 70px;
+            }
 
             .subdescription {
               p {
@@ -68,11 +103,19 @@ const Wrapper = styled.section<WrapperProps>`
             }
 
             .icon-quote {
-              color: ${({ quoteColor }) => quoteColor};
-              font-size: 2.4rem;
-              position: absolute;
-              top: -20px;
-              left: 20px;
+              display: none;
+              @media ${SCREEN.tablet} {
+                color: ${({ quoteColor }) => quoteColor};
+                position: absolute;
+                display: block;
+                font-size: 2.4rem;
+                top: -30px;
+                left: 0;
+              }
+              @media ${SCREEN.laptop} {
+                top: -20px;
+                left: 20px;
+              }
             }
           }
         }

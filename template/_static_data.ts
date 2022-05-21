@@ -19,6 +19,9 @@ export const defaultColor = {
   cta: {
     background_color: "#a6adb4",
     text_color: "#4c4747",
+    button_background_color: "pink",
+    button_text_color: "pink",
+    button_is_fill: false,
   },
   slides: {
     container_background_color: "yellow",

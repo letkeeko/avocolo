@@ -40,7 +40,10 @@ const Wrapper = styled.nav<WrapperProps>`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    height: 80px;
+    height: 62px;
+    @media ${SCREEN.tablet} {
+      height: 80px;
+    }
 
     &__each {
       display: none;
@@ -76,11 +79,12 @@ const Wrapper = styled.nav<WrapperProps>`
   .overlay {
     background-color: ${({ backgroundColor }) => backgroundColor};
     position: fixed;
-    top: 66px;
+    top: 62px;
     left: 0;
     right: 0;
     bottom: 0;
     padding: 66px 0 0 0;
+    z-index: 10;
     @media ${SCREEN.tablet} {
       display: none;
     }

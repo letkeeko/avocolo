@@ -13,24 +13,45 @@ type WrapperProps = {
 
 const Wrapper = styled.header<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
-  padding: 240px 0 160px 0;
+  padding: 110px 0 80px 0;
+  @media ${SCREEN.tablet} {
+    padding: 160px 0 130px 0;
+  }
+  @media ${SCREEN.laptop} {
+    padding: 240px 0 160px 0;
+  }
 
   .flex-row {
     display: flex;
+    flex-direction: column;
+    @media ${SCREEN.laptop} {
+      flex-direction: row;
+    }
 
     .col {
       color: ${({ textColor }) => textColor};
 
       &--one {
-        width: 55%;
-        padding: 0 70px 0 0;
+        @media ${SCREEN.laptop} {
+          width: 55%;
+          padding: 0 70px 0 0;
+        }
         @media ${SCREEN.desktop} {
           padding: 0 90px 0 0;
         }
       }
 
       &--two {
-        width: 45%;
+        margin: 0 0 20px 0;
+        order: -1;
+        @media ${SCREEN.tablet} {
+          margin: 0 0 40px 0;
+        }
+        @media ${SCREEN.laptop} {
+          order: 0;
+          margin: 0;
+          width: 45%;
+        }
 
         img {
           display: block;

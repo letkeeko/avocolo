@@ -17,20 +17,33 @@ const Wrapper = styled.footer<WrapperProps>`
   color: ${({ textColor }) => textColor};
 
   .flex-row {
-    display: flex;
+    @media ${SCREEN.tablet} {
+      display: flex;
+    }
 
     &--center {
+      display: flex;
       align-items: center;
       justify-content: center;
     }
   }
 
   .top {
-    padding: 80px 0 0 0;
+    padding: 50px 0 0 0;
+    @media ${SCREEN.tablet} {
+      padding: 80px 0 0 0;
+    }
+    @media ${SCREEN.laptop} {
+      padding: 80px 0 0 0;
+    }
 
     .logo {
-      width: 52px;
-      margin: 0 0 36px 0;
+      width: 62px;
+      margin: 0 0 26px 0;
+      @media ${SCREEN.tablet} {
+        margin: 0 0 36px 0;
+        width: 70px;
+      }
     }
 
     .subheading {
@@ -40,9 +53,14 @@ const Wrapper = styled.footer<WrapperProps>`
     }
 
     .link {
-      font-size: 0.95rem;
+      color: ${({ textColor }) => textColor};
+      font-size: 0.875rem;
       font-weight: 300;
-      margin: 0 0 12px 0;
+      margin: 0 0 10px 0;
+      @media ${SCREEN.tablet} {
+        font-size: 0.95rem;
+        margin: 0 0 12px 0;
+      }
     }
 
     .icon-social {
@@ -51,29 +69,52 @@ const Wrapper = styled.footer<WrapperProps>`
     }
 
     .col {
-      width: 33.33%;
+      margin: 0 0 30px 0;
+      @media ${SCREEN.tablet} {
+        width: 33.33%;
+        margin: 0;
+      }
 
       &--two {
-        max-width: max-content;
-        margin: 0 auto;
+        @media ${SCREEN.tablet} {
+          max-width: max-content;
+          margin: 0 auto;
+        }
       }
 
       &--three {
-        max-width: max-content;
-        margin: 0 0 0 auto;
+        @media ${SCREEN.tablet} {
+          max-width: max-content;
+          margin: 0 0 0 auto;
+        }
       }
     }
   }
 
   .bot {
-    padding: 80px 0 40px 0;
+    padding: 30px 0 20px 0;
+    @media ${SCREEN.tablet} {
+      padding: 80px 0 40px 0;
+    }
+
     p {
-      font-size: 0.825rem;
+      font-size: 0.65rem;
       font-weight: 300;
+      @media ${SCREEN.tablet} {
+        font-size: 0.825rem;
+      }
     }
 
     span {
-      margin: 0 30px;
+      margin: 0 8px;
+      font-size: 0.65rem;
+      @media ${SCREEN.tablet} {
+        margin: 0 15px;
+        font-size: 1rem;
+      }
+      @media ${SCREEN.laptop} {
+        margin: 0 30px;
+      }
     }
   }
 `;
@@ -114,7 +155,7 @@ export default function Footer() {
             <motion.div className="col col--two" {...whileInView}>
               <h6 className="subheading">Get in touch</h6>
               <p className="link cursor">info@thatcompany.com</p>
-              <p className="link cursor">+1234 567 8910</p>
+              <p className="link cursor">1234 567 8910</p>
               <p className="link cursor">
                 20 Yeah Man Road,
                 <br />

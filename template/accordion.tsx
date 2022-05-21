@@ -14,36 +14,60 @@ type WrapperProps = {
 
 const Wrapper = styled.section<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
-  padding: 130px 0 130px 0;
+  padding: 70px 0 70px 0;
+  @media ${SCREEN.tablet} {
+    padding: 110px 0 110px 0;
+  }
+  @media ${SCREEN.laptop} {
+    padding: 130px 0 130px 0;
+  }
 
   .flex-row {
     display: flex;
+    flex-direction: column;
+    @media ${SCREEN.laptop} {
+      flex-direction: row;
+    }
 
     .col {
       color: ${({ textColor }) => textColor};
 
       &--one {
-        width: 55%;
-        padding: 0 70px 0 0;
+        @media ${SCREEN.laptop} {
+          padding: 0 70px 0 0;
+          width: 55%;
+        }
         @media ${SCREEN.desktop} {
           padding: 0 90px 0 0;
         }
 
         .accordion-list {
-          margin: 45px 0 0 0;
+          margin: 20px 0 0 0;
+          @media ${SCREEN.tablet} {
+            margin: 30px 0 0 0;
+          }
+          @media ${SCREEN.desktop} {
+            margin: 45px 0 0 0;
+          }
 
           &__each {
             .heading-trigger {
               position: relative;
               cursor: pointer;
-              padding: 18px 0 15px 0;
+              padding: 15px 0 15px 0;
               display: flex;
               align-items: flex-start;
+              @media ${SCREEN.tablet} {
+                padding: 17px 0 15px 0;
+              }
 
               .icon-arrow {
                 svg {
-                  font-size: 1.4rem;
+                  font-size: 1.3rem;
                   transition: transform 0.2s ease-in-out;
+                  @media ${SCREEN.tablet} {
+                    font-size: 1.4rem;
+                  }
                 }
               }
 
@@ -81,6 +105,7 @@ const Wrapper = styled.section<WrapperProps>`
             .description {
               margin: 0 0 15px 0;
               padding: 0 0 0 27px;
+
               p {
                 font-weight: 400;
                 font-size: 0.9rem;
@@ -95,7 +120,15 @@ const Wrapper = styled.section<WrapperProps>`
       }
 
       &--two {
-        width: 45%;
+        margin: 0 0 20px 0;
+        order: -1;
+        @media ${SCREEN.tablet} {
+          margin: 0 0 40px 0;
+        }
+        @media ${SCREEN.laptop} {
+          width: 45%;
+          order: 0;
+        }
 
         img {
           display: block;

@@ -5,7 +5,13 @@ import Layout from "../components/layout";
 import { COLOR, SCREEN } from "../components/variables";
 import TemplateOne from "../template/template";
 
-const Wrapper = styled.main``;
+const Wrapper = styled.main`
+  .site-wrapper {
+    /* border: 1px red solid;
+    transform: translateX(200px);
+    margin: 0 0 0 200px; */
+  }
+`;
 
 const Editor: NextPage = () => {
   return (

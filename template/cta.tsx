@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import Button from "../components/button";
-import Image from "next/image";
 import { SCREEN, whileInView } from "../components/variables";
 import { defaultColor } from "./_static_data";
 
@@ -14,17 +13,29 @@ type WrapperProps = {
 
 const Wrapper = styled.section<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
-  padding: 130px 0 130px 0;
+  padding: 70px 0 70px 0;
+  @media ${SCREEN.tablet} {
+    padding: 110px 0 110px 0;
+  }
+  @media ${SCREEN.laptop} {
+    padding: 130px 0 130px 0;
+  }
 
   .flex-row {
     display: flex;
+    flex-direction: column;
+    @media ${SCREEN.laptop} {
+      flex-direction: row;
+    }
 
     .col {
       color: ${({ textColor }) => textColor};
 
       &--one {
-        width: 45%;
-        padding: 0 70px 0 0;
+        @media ${SCREEN.laptop} {
+          width: 45%;
+          padding: 0 70px 0 0;
+        }
         @media ${SCREEN.desktop} {
           padding: 0 90px 0 0;
         }
@@ -37,7 +48,14 @@ const Wrapper = styled.section<WrapperProps>`
       }
 
       &--two {
-        width: 55%;
+        margin: 20px 0 0 0;
+        @media ${SCREEN.tablet} {
+          margin: 40px 0 0 0;
+        }
+        @media ${SCREEN.laptop} {
+          margin: 0;
+          width: 55%;
+        }
 
         ul {
           padding: 0 0 0 40px;
@@ -51,7 +69,13 @@ const Wrapper = styled.section<WrapperProps>`
 `;
 
 export default function Cta() {
-  const { background_color, text_color } = defaultColor.cta;
+  const {
+    background_color,
+    text_color,
+    button_background_color,
+    button_text_color,
+    button_is_fill,
+  } = defaultColor.cta;
 
   return (
     <Wrapper backgroundColor={background_color} textColor={text_color}>
@@ -60,7 +84,7 @@ export default function Cta() {
           <motion.div className="col col--one" {...whileInView}>
             <img src="https://picsum.photos/900/568" alt="Amazing asset" />
           </motion.div>
-          <motion.div className="col col--two" whileInView>
+          <motion.div className="col col--two" {...whileInView}>
             <Heading as="h2" className="mb">
               Donec quis porttitor libero, ut placerat sapien
             </Heading>
@@ -91,9 +115,9 @@ export default function Cta() {
             </ul>
             <Button
               customStyles={{
-                textColor: "green",
-                backgroundColor: "white",
-                isFill: false,
+                textColor: button_text_color,
+                backgroundColor: button_background_color,
+                isFill: button_is_fill,
                 containerColor: background_color,
               }}
             >
