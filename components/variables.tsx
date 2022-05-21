@@ -14,3 +14,10 @@ export const SCREEN = {
   desktop: "(min-width: 1520px)", // large laptop to desktop
   cursor: "not all and (pointer: coarse)", // non touchscreen device - prevent hover with our finger touch, i'm bothered :P
 };
+
+// framer motion animate on scroll
+export const whileInView = {
+  initial: { opacity: 0, y: 60 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+};

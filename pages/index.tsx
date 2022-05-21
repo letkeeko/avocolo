@@ -13,7 +13,6 @@ import Dots from "../svg/dots.svg";
 import { VscGithubAlt } from "react-icons/vsc";
 
 const Wrapper = styled.main`
-  background-color: ${COLOR.white};
   display: flex;
   position: relative;
   width: 100%;
@@ -171,7 +170,7 @@ const Home: NextPage = () => {
           <Logo />
         </div>
         <div className="inner-wrapper">
-          <Heading>Mockup website color</Heading>
+          <Heading as="h1">Mockup website color</Heading>
           <div className="txt-wrap">
             <Text>
               The easiest way, with ready responsive layout.
@@ -181,7 +180,7 @@ const Home: NextPage = () => {
           </div>
 
           <div className="btn-wrap">
-            <Button href="/edit">GET STARTED</Button>
+            <Button href="/editor">GET STARTED</Button>
           </div>
 
           <div className="img-wrap">

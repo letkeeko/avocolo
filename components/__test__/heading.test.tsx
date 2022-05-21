@@ -3,7 +3,7 @@ import Heading from "../heading";
 
 describe("Heading", () => {
   it("should render", () => {
-    render(<Heading>Morning</Heading>);
+    render(<Heading as="h1">Morning</Heading>);
 
     const headingElement = screen.getByText("Morning");
 
