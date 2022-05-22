@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { PropTypes } from "../components/types/template.types";
 import { AnimatePresence, motion } from "framer-motion";
 import Heading from "../components/heading";
 import Text from "../components/text";
-import { RiDoubleQuotesL } from "react-icons/ri";
 import { SCREEN, whileInView } from "../components/variables";
-import { defaultColor, slideList } from "./_static_data";
+import { slideList } from "./_static_data";
 
 type WrapperProps = {
   backgroundColor: string;
@@ -84,11 +84,11 @@ const Wrapper = styled.section<WrapperProps>`
             @media ${SCREEN.tablet} {
               width: max-content;
               max-width: 430px;
-              padding: 0 0 0 35px;
+              padding: 0 0 0 20px;
             }
             @media ${SCREEN.laptop} {
               max-width: 640px;
-              padding: 0 0 0 70px;
+              padding: 0 0 0 50px;
             }
 
             .subdescription {
@@ -99,22 +99,6 @@ const Wrapper = styled.section<WrapperProps>`
                 @media ${SCREEN.tablet} {
                   font-size: 0.975rem;
                 }
-              }
-            }
-
-            .icon-quote {
-              display: none;
-              @media ${SCREEN.tablet} {
-                color: ${({ quoteColor }) => quoteColor};
-                position: absolute;
-                display: block;
-                font-size: 2.4rem;
-                top: -30px;
-                left: 0;
-              }
-              @media ${SCREEN.laptop} {
-                top: -20px;
-                left: 20px;
               }
             }
           }
@@ -161,7 +145,7 @@ const animateItem = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function Slides() {
+export default function Slides(props: PropTypes) {
   const [currentActive, setCurrentActive] = useState(0);
 
   const {
@@ -170,7 +154,7 @@ export default function Slides() {
     dots_color,
     active_dot_color,
     quote_color,
-  } = defaultColor.slides;
+  } = props.selections;
 
   const getClassName = (index: number) => {
     if (index === currentActive) return "dots__each dots__each--active";
@@ -221,9 +205,6 @@ export default function Slides() {
                       <motion.div variants={animateItem}>
                         <strong>{item.name}</strong> / {item.company}
                       </motion.div>
-                      <div className="icon-quote" aria-hidden="true">
-                        <RiDoubleQuotesL />
-                      </div>
                     </div>
                   </motion.div>
                 </div>

@@ -1,10 +1,11 @@
-export const defaultColor = {
-  nav: {
+export const defaultSelections = {
+  navigation: {
     container_background_color: "#ffffff",
     container_text_color: "#3f2222",
     logo_color: "pink",
   },
   banner: {
+    featured_image: "/",
     container_background_color: "#ffffff",
     container_text_color: "#3f2222",
     button_background_color: "pink",
@@ -17,13 +18,15 @@ export const defaultColor = {
     icon_color: "pink",
   },
   cta: {
-    background_color: "#a6adb4",
-    text_color: "#4c4747",
+    featured_image: "/",
+    container_background_color: "#a6adb4",
+    container_text_color: "#4c4747",
     button_background_color: "pink",
     button_text_color: "pink",
     button_is_fill: false,
   },
   slides: {
+    featured_image: "/",
     container_background_color: "yellow",
     container_text_color: "green",
     dots_color: "pink",
@@ -31,6 +34,7 @@ export const defaultColor = {
     quote_color: "orange",
   },
   accordion: {
+    featured_image: "/",
     container_background_color: "white",
     container_text_color: "#3f2222",
     active_trigger_color: "red",

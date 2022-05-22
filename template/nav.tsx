@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { PropTypes } from "../components/types/template.types";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import Logo from "../svg/mockup-logo.svg";
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { SCREEN } from "../components/variables";
-import { defaultColor } from "./_static_data";
 
 type WrapperProps = {
   backgroundColor: string;
@@ -41,17 +41,14 @@ const Wrapper = styled.nav<WrapperProps>`
     align-items: center;
     justify-content: flex-end;
     height: 62px;
-    @media ${SCREEN.tablet} {
+    @media ${SCREEN.laptop} {
       height: 80px;
     }
 
     &__each {
       display: none;
-      @media ${SCREEN.tablet} {
-        display: block;
-        margin: 0 0 0 68px;
-      }
       @media ${SCREEN.laptop} {
+        display: block;
         margin: 0 0 0 80px;
       }
 
@@ -69,7 +66,7 @@ const Wrapper = styled.nav<WrapperProps>`
         cursor: pointer;
         display: block;
         font-size: 2.2rem;
-        @media ${SCREEN.tablet} {
+        @media ${SCREEN.laptop} {
           display: none;
         }
       }
@@ -85,7 +82,7 @@ const Wrapper = styled.nav<WrapperProps>`
     bottom: 0;
     padding: 66px 0 0 0;
     z-index: 10;
-    @media ${SCREEN.tablet} {
+    @media ${SCREEN.laptop} {
       display: none;
     }
 
@@ -116,16 +113,17 @@ const animateItem = {
   show: { opacity: 1, y: 0 },
 };
 
-export default function Nav() {
+export default function Nav(props: PropTypes) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { container_background_color, container_text_color, logo_color } =
-    defaultColor.nav;
+    props.selections;
 
   return (
     <Wrapper
       backgroundColor={container_background_color}
       logoColor={logo_color}
       textColor={container_text_color}
+      id="nav"
     >
       <div className="inner-wrapper">
         <div className="logo cursor">

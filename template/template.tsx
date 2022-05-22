@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { SCREEN } from "../components/variables";
+import { PropTypes } from "../components/types/template.types";
 import Nav from "./nav";
 import Banner from "./banner";
 import Features from "./features";
@@ -17,7 +18,7 @@ const Wrapper = styled.div`
       padding: 0 48px;
     }
     @media ${SCREEN.desktop} {
-      padding: 0;
+      padding: 0 24px;
     }
   }
 
@@ -39,16 +40,18 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function TemplateOne() {
+export default function TemplateOne(props: PropTypes) {
+  const { selections } = props;
+
   return (
     <Wrapper>
-      <Nav />
-      <Banner />
-      <Features />
-      <Cta />
-      <Slides />
-      <Accordion />
-      <Footer />
+      {selections.navigation && <Nav selections={selections.navigation} />}
+      {selections.banner && <Banner selections={selections.banner} />}
+      {selections.features && <Features selections={selections.features} />}
+      {selections.cta && <Cta selections={selections.cta} />}
+      {selections.slides && <Slides selections={selections.slides} />}
+      {selections.accordion && <Accordion selections={selections.accordion} />}
+      {selections.footer && <Footer selections={selections.footer} />}
     </Wrapper>
   );
 }

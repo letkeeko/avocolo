@@ -1,10 +1,10 @@
 import styled from "styled-components";
+import { PropTypes } from "../components/types/template.types";
 import { motion } from "framer-motion";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import { GiBananaPeeled, GiStrawberry, GiWatermelon } from "react-icons/gi";
 import { SCREEN, whileInView } from "../components/variables";
-import { defaultColor } from "./_static_data";
 
 type WrapperProps = {
   backgroundColor: string;
@@ -64,9 +64,9 @@ const Wrapper = styled.section<WrapperProps>`
   }
 `;
 
-export default function Features() {
+export default function Features(props: PropTypes) {
   const { container_background_color, container_text_color, icon_color } =
-    defaultColor.features;
+    props.selections;
 
   return (
     <Wrapper

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { PropTypes } from "../components/types/template.types";
 import { motion } from "framer-motion";
 import Heading from "../components/heading";
 import { SCREEN, whileInView } from "../components/variables";
-import { defaultColor, accordionList } from "./_static_data";
+import { accordionList } from "./_static_data";
 import { BsFillPlayFill } from "react-icons/bs";
 
 type WrapperProps = {
@@ -140,18 +141,19 @@ const Wrapper = styled.section<WrapperProps>`
   }
 `;
 
-export default function Accordion() {
+export default function Accordion(props: PropTypes) {
   const [currentActives, setCurrentActives] = useState<number[]>([0]);
 
   const {
     container_background_color,
     container_text_color,
     active_trigger_color,
-  } = defaultColor.accordion;
+  } = props.selections;
 
   const getClassName = (index: number) => {
-    if (currentActives.includes(index))
+    if (currentActives.includes(index)) {
       return "heading-trigger heading-trigger--active";
+    }
 
     return "heading-trigger";
   };

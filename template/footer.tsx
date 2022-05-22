@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { PropTypes } from "../components/types/template.types";
 import Logo from "../svg/mockup-logo.svg";
 import { FaFacebookSquare, FaTwitterSquare, FaLinkedin } from "react-icons/fa";
 import { SCREEN, whileInView } from "../components/variables";
-import { defaultColor } from "./_static_data";
 
 type WrapperProps = {
   backgroundColor: string;
@@ -119,13 +119,13 @@ const Wrapper = styled.footer<WrapperProps>`
   }
 `;
 
-export default function Footer() {
+export default function Footer(props: PropTypes) {
   const {
     container_background_color,
     container_text_color,
     logo_color,
     icon_color,
-  } = defaultColor.footer;
+  } = props.selections;
 
   return (
     <Wrapper

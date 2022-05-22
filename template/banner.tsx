@@ -1,10 +1,10 @@
 import styled from "styled-components";
+import { PropTypes } from "../components/types/template.types";
 import { motion } from "framer-motion";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import Button from "../components/button";
 import { SCREEN, whileInView } from "../components/variables";
-import { defaultColor } from "./_static_data";
 
 type WrapperProps = {
   backgroundColor: string;
@@ -63,14 +63,14 @@ const Wrapper = styled.header<WrapperProps>`
   }
 `;
 
-export default function Banner() {
+export default function Banner(props: PropTypes) {
   const {
     container_background_color,
     container_text_color,
     button_background_color,
     button_text_color,
     button_is_fill,
-  } = defaultColor.banner;
+  } = props.selections;
 
   return (
     <Wrapper

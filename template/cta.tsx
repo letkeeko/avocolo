@@ -1,10 +1,10 @@
 import styled from "styled-components";
+import { PropTypes } from "../components/types/template.types";
 import { motion } from "framer-motion";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import Button from "../components/button";
 import { SCREEN, whileInView } from "../components/variables";
-import { defaultColor } from "./_static_data";
 
 type WrapperProps = {
   backgroundColor: string;
@@ -68,17 +68,20 @@ const Wrapper = styled.section<WrapperProps>`
   }
 `;
 
-export default function Cta() {
+export default function Cta(props: PropTypes) {
   const {
-    background_color,
-    text_color,
+    container_background_color,
+    container_text_color,
     button_background_color,
     button_text_color,
     button_is_fill,
-  } = defaultColor.cta;
+  } = props.selections;
 
   return (
-    <Wrapper backgroundColor={background_color} textColor={text_color}>
+    <Wrapper
+      backgroundColor={container_background_color}
+      textColor={container_text_color}
+    >
       <div className="inner-wrapper">
         <div className="flex-row">
           <motion.div className="col col--one" {...whileInView}>
@@ -118,7 +121,7 @@ export default function Cta() {
                 textColor: button_text_color,
                 backgroundColor: button_background_color,
                 isFill: button_is_fill,
-                containerColor: background_color,
+                containerColor: container_background_color,
               }}
             >
               GET IN TOUCH
