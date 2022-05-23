@@ -13,12 +13,12 @@ type WrapperProps = {
 
 const Wrapper = styled.header<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
-  padding: 110px 0 80px 0;
+  padding: 70px 0 70px 0;
   @media ${SCREEN.tablet} {
     padding: 160px 0 130px 0;
   }
   @media ${SCREEN.laptop} {
-    padding: 240px 0 160px 0;
+    padding: 160px 0 160px 0;
   }
 
   .flex-row {
@@ -76,6 +76,7 @@ export default function Banner(props: PropTypes) {
     <Wrapper
       backgroundColor={container_background_color}
       textColor={container_text_color}
+      id="banner"
     >
       <div className="inner-wrapper">
         <div className="flex-row">

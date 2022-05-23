@@ -15,8 +15,7 @@ type WrapperProps = {
 
 const Wrapper = styled.nav<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
-  position: fixed;
-  width: 100%;
+  position: relative;
   box-shadow: 0 6px 10px -8px rgba(0, 0, 0, 0.2);
   z-index: 2;
 
@@ -123,7 +122,7 @@ export default function Nav(props: PropTypes) {
       backgroundColor={container_background_color}
       logoColor={logo_color}
       textColor={container_text_color}
-      id="nav"
+      id="navigation"
     >
       <div className="inner-wrapper">
         <div className="logo cursor">

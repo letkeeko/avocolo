@@ -173,6 +173,7 @@ export default function Accordion(props: PropTypes) {
       backgroundColor={container_background_color}
       textColor={container_text_color}
       activeTriggerColor={active_trigger_color}
+      id="accordion"
     >
       <div className="inner-wrapper">
         <div className="flex-row">

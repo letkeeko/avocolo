@@ -140,6 +140,7 @@ export default function Footer(props: PropTypes) {
       textColor={container_text_color}
       logoColor={logo_color}
       iconColor={icon_color}
+      id="footer"
     >
       <div className="top">
         <div className="inner-wrapper">

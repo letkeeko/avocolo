@@ -17,8 +17,11 @@ const Wrapper = styled.div`
     padding: 12px 24px;
     display: flex;
     align-items: center;
-    cursor: pointer;
     border-top: 1px solid #e8e8e8;
+
+    a {
+      color: ${COLOR.black};
+    }
 
     &--active {
       background-color: #e8e8e8;
@@ -174,14 +177,17 @@ export default function Dropdown(props: PropTypes) {
 
   return (
     <Wrapper>
-      <div
-        className={getActiveClassName()}
-        onClick={() => handleDropdownClick(objKey)}
-      >
+      <div className={getActiveClassName()}>
         <span className="icon">
           <VscChevronRight />
         </span>
-        <span className="label">{label}</span>
+        <a
+          className="label"
+          href={"#" + objKey}
+          onClick={() => handleDropdownClick(objKey)}
+        >
+          {label}
+        </a>
       </div>
       {isDropdownOpen && (
         <div className="list-option">

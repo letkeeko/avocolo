@@ -73,6 +73,7 @@ export default function Features(props: PropTypes) {
       backgroundColor={container_background_color}
       textColor={container_text_color}
       iconColor={icon_color}
+      id="features"
     >
       <div className="inner-wrapper">
         <motion.div className="description" {...whileInView}>

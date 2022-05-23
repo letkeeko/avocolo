@@ -81,6 +81,7 @@ export default function Cta(props: PropTypes) {
     <Wrapper
       backgroundColor={container_background_color}
       textColor={container_text_color}
+      id="cta"
     >
       <div className="inner-wrapper">
         <div className="flex-row">

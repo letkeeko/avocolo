@@ -28,7 +28,7 @@ const Wrapper = styled.main<WrapperProps>`
 `;
 
 const Editor: NextPage = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selections, setSelections] = useState({});
 
   const debounce = useDebouncedCallback((value) => {

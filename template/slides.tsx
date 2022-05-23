@@ -169,6 +169,7 @@ export default function Slides(props: PropTypes) {
       dotsColor={dots_color}
       activeDotColor={active_dot_color}
       quoteColor={quote_color}
+      id="slides"
     >
       <div className="inner-wrapper">
         <motion.div className="description" {...whileInView}>
