@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import { PropTypes } from "../types/dropdown.types";
 import Button from "../button";
@@ -12,7 +13,7 @@ import {
 } from "react-icons/vsc";
 import { COLOR, SCREEN } from "../variables";
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   .heading-trigger {
     padding: 12px 24px;
     display: flex;
@@ -102,6 +103,7 @@ export default function Dropdown(props: PropTypes) {
     handleDropdownClick,
     handleChange,
     activeDropdown,
+    variants,
   } = props;
 
   const objKey = label.toLowerCase();
@@ -176,7 +178,7 @@ export default function Dropdown(props: PropTypes) {
   // end button fill handler
 
   return (
-    <Wrapper>
+    <Wrapper variants={variants}>
       <div className={getActiveClassName()}>
         <span className="icon">
           <VscChevronRight />

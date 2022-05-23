@@ -20,15 +20,10 @@ const Wrapper = styled.main<WrapperProps>`
       isSidebarOpen ? "calc(100% - 250px)" : "100%"};
     margin: ${({ isSidebarOpen }) => (isSidebarOpen ? "0 0 0 auto" : "0")};
   }
-
-  #nav {
-    width: ${({ isSidebarOpen }) =>
-      isSidebarOpen ? "calc(100% - 250px)" : "100%"};
-  }
 `;
 
 const Editor: NextPage = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selections, setSelections] = useState({});
 
   const debounce = useDebouncedCallback((value) => {
@@ -51,6 +46,8 @@ const Editor: NextPage = () => {
     // setSelections({ ...selections, ...updatedValue });
   };
 
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
   return (
     <Layout>
       <SEO
@@ -59,9 +56,12 @@ const Editor: NextPage = () => {
         pathname=""
       />
       <Wrapper isSidebarOpen={isSidebarOpen}>
-        {isSidebarOpen && (
-          <Panel selections={selections} handleChange={handleChange} />
-        )}
+        <Panel
+          isSidebarOpen={isSidebarOpen}
+          selections={selections}
+          handleChange={handleChange}
+          toggleSidebar={toggleSidebar}
+        />
 
         <div className="site-wrapper">
           <TemplateOne selections={selections} />
