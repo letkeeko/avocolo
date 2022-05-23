@@ -44,6 +44,12 @@ const Wrapper = styled.footer<WrapperProps>`
         margin: 0 0 36px 0;
         width: 70px;
       }
+
+      svg {
+        .mockup-logo_svg__uuid-cfe96933-424d-4891-b691-1153aebf74f2 {
+          fill: ${({ logoColor }) => logoColor};
+        }
+      }
     }
 
     .subheading {
@@ -66,6 +72,7 @@ const Wrapper = styled.footer<WrapperProps>`
     .icon-social {
       font-size: 1.6rem;
       margin: 0 20px 0 0;
+      color: ${({ iconColor }) => iconColor};
     }
 
     .col {

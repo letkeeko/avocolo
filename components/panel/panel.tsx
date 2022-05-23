@@ -1,9 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { PropTypes } from "../types/panel.types";
+import Logo from "../../svg/avocolo-logo.svg";
 import Dropdown from "./dropdown";
 import Button from "../button";
 import { COLOR, SCREEN } from "../variables";
+import { VscEdit } from "react-icons/vsc";
 
 const Wrapper = styled.aside`
   background-color: rgba(255, 255, 255, 0.5);
@@ -21,6 +23,20 @@ const Wrapper = styled.aside`
   }
   &::-webkit-scrollbar-thumb {
     background-color: ${COLOR.green};
+  }
+
+  .brand {
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      margin: 0 8px 0 0;
+    }
+
+    .logo {
+      width: 84px;
+    }
   }
 `;
 
@@ -49,6 +65,14 @@ export default function Panel(props: PropTypes) {
 
   return (
     <Wrapper>
+      <div className="brand">
+        <span className="icon">
+          <VscEdit />
+        </span>
+        <span className="logo">
+          <Logo />
+        </span>
+      </div>
       <Dropdown
         label="Navigation"
         handleDropdownClick={handleDropdownClick}

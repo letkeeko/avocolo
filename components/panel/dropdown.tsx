@@ -1,14 +1,16 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { HexColorPicker, HexColorInput } from "react-colorful";
 import { PropTypes } from "../types/dropdown.types";
 import Button from "../button";
+import BlankOverlay from "./blank-overlay";
 import {
   VscRefresh,
   VscChevronRight,
   VscCheck,
   VscChromeMinimize,
 } from "react-icons/vsc";
-
-import { SCREEN } from "../variables";
+import { COLOR, SCREEN } from "../variables";
 
 const Wrapper = styled.div`
   .heading-trigger {
@@ -30,6 +32,7 @@ const Wrapper = styled.div`
 
   .label {
     font-size: 1.05rem;
+    cursor: pointer;
   }
 
   .icon {
@@ -43,17 +46,18 @@ const Wrapper = styled.div`
     display: inline-block;
     margin: 0 6px 0 0;
     border-radius: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.175);
+    border: 1px solid rgba(0, 0, 0, 0.15);
   }
 
   .list-option {
+    padding: 4px 0;
   }
 
   .option {
     display: flex;
     align-items: center;
-    cursor: pointer;
     padding: 9px 24px;
+    position: relative;
 
     &--nested {
       padding: 9px 36px;
@@ -64,11 +68,43 @@ const Wrapper = styled.div`
 
     &--active {
       background-color: #f4f4f4;
+
+      .icon {
+        transform: rotate(90deg);
+        margin: 0 8px -2px 0;
+      }
+    }
+
+    .absolute-color-picker {
+      position: absolute;
+      top: 37px;
+      z-index: 10;
+      border-radius: 6px;
+
+      input {
+        width: 100%;
+        margin: 10px 0 0 0;
+        padding: 5px;
+      }
+
+      /* &::after {
+        content: "";
+        background-color: ${COLOR.white};
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 150%;
+        height: calc(100% + 10px);
+        z-index: -1;
+        transform: translateX(-50%);
+      } */
     }
   }
 `;
 
 export default function Dropdown(props: PropTypes) {
+  const [activeColorPicker, setActiveColorPicker] = useState("");
+
   const {
     label,
     selections,
@@ -82,8 +118,10 @@ export default function Dropdown(props: PropTypes) {
   const selection = selections[objKey] || {};
 
   const getValueAndUpdate = (key: string, val: string) => {
-    console.log(objKey);
-    console.log(key, val);
+    // modify current object
+    selections[objKey] = { ...selection, [key]: val };
+
+    handleChange({ ...selections, selection });
   };
 
   const isDropdownOpen = activeDropdown.includes(objKey);
@@ -102,6 +140,42 @@ export default function Dropdown(props: PropTypes) {
     }
 
     return "option option--nested option--trigger";
+  };
+
+  const handleActiveColorPicker = (val: string) => {
+    if (activeColorPicker === val) {
+      setActiveColorPicker("");
+
+      return;
+    }
+
+    setActiveColorPicker(val);
+  };
+
+  const isColorPicker = (val: string) => {
+    return activeColorPicker === val;
+  };
+
+  const renderColorPicker = (key: string) => {
+    if (isColorPicker(key))
+      return (
+        <div className="absolute-color-picker">
+          <HexColorPicker
+            color={selection[key]}
+            onChange={(e) => {
+              getValueAndUpdate(key, e);
+            }}
+          />
+          <HexColorInput
+            color={selection[key]}
+            onChange={(e) => {
+              getValueAndUpdate(key, e);
+            }}
+          />
+        </div>
+      );
+
+    return null;
   };
 
   return (
@@ -127,38 +201,62 @@ export default function Dropdown(props: PropTypes) {
           )}
 
           {!!selection["container_background_color"] && (
-            <div
-              className="option"
-              onClick={() =>
-                getValueAndUpdate("container_background_color", "gold")
-              }
-            >
+            <div className="option">
+              {renderColorPicker("container_background_color")}
+
               <span
                 className="color"
                 style={{
                   backgroundColor: selection["container_background_color"],
                 }}
               ></span>
-              <span className="label">Background</span>
+
+              <span
+                className="label"
+                onClick={() =>
+                  handleActiveColorPicker("container_background_color")
+                }
+              >
+                Background
+              </span>
             </div>
           )}
 
           {!!selection["container_text_color"] && (
             <div className="option">
+              {renderColorPicker("container_text_color")}
+
               <span
                 className="color"
                 style={{
                   backgroundColor: selection["container_text_color"],
                 }}
               ></span>
-              <span className="label">Text</span>
+              <span
+                className="label"
+                onClick={() => handleActiveColorPicker("container_text_color")}
+              >
+                Text
+              </span>
             </div>
           )}
 
           {!!selection["logo_color"] && (
             <div className="option">
-              <span className="color"></span>
-              <span className="label">Logo</span>
+              {renderColorPicker("logo_color")}
+
+              <span
+                className="color"
+                style={{
+                  backgroundColor: selection["logo_color"],
+                }}
+              ></span>
+              <span
+                className="label"
+                onClick={() => handleActiveColorPicker("logo_color")}
+              >
+                Logo
+              </span>
             </div>
           )}
 
@@ -176,12 +274,33 @@ export default function Dropdown(props: PropTypes) {
               {isNestedDropdown && (
                 <>
                   <div className="option option--nested">
-                    <span className="color"></span>
-                    <span className="label">Inactive</span>
+                    {renderColorPicker("dots_color")}
+
+                    <span
+                      className="color"
+                      style={{
+                        backgroundColor: selection["dots_color"],
+                      }}
+                    ></span>
+                    <span
+                      className="label"
+                      onClick={() => handleActiveColorPicker("dots_color")}
+                    >
+                      Inactive
+                    </span>
                   </div>
                   <div className="option option--nested">
+                    {renderColorPicker("active_dot_color")}
+
                     <span className="color"></span>
-                    <span className="label">Active</span>
+                    <span
+                      className="label"
+                      onClick={() =>
+                        handleActiveColorPicker("active_dot_color")
+                      }
+                    >
+                      Active
+                    </span>
                   </div>
                 </>
               )}
@@ -202,12 +321,40 @@ export default function Dropdown(props: PropTypes) {
               {isNestedDropdown && (
                 <>
                   <div className="option option--nested">
-                    <span className="color"></span>
-                    <span className="label">Background</span>
+                    {renderColorPicker("button_background_color")}
+
+                    <span
+                      className="color"
+                      style={{
+                        backgroundColor: selection["button_background_color"],
+                      }}
+                    ></span>
+                    <span
+                      className="label"
+                      onClick={() =>
+                        handleActiveColorPicker("button_background_color")
+                      }
+                    >
+                      Background
+                    </span>
                   </div>
                   <div className="option option--nested">
-                    <span className="color"></span>
-                    <span className="label">Text</span>
+                    {renderColorPicker("button_text_color")}
+
+                    <span
+                      className="color"
+                      style={{
+                        backgroundColor: selection["button_text_color"],
+                      }}
+                    ></span>
+                    <span
+                      className="label"
+                      onClick={() =>
+                        handleActiveColorPicker("button_text_color")
+                      }
+                    >
+                      Text
+                    </span>
                   </div>
                   <div className="option option--nested">
                     <span className="icon">
@@ -222,18 +369,45 @@ export default function Dropdown(props: PropTypes) {
 
           {!!selection["icon_color"] && (
             <div className="option">
-              <span className="color"></span>
-              <span className="label">Icon</span>
+              {renderColorPicker("icon_color")}
+
+              <span
+                className="color"
+                style={{
+                  backgroundColor: selection["icon_color"],
+                }}
+              ></span>
+              <span
+                className="label"
+                onClick={() => handleActiveColorPicker("icon_color")}
+              >
+                Icon
+              </span>
             </div>
           )}
 
           {!!selection["active_trigger_color"] && (
             <div className="option">
-              <span className="color"></span>
-              <span className="label">Trigger</span>
+              {renderColorPicker("active_trigger_color")}
+
+              <span
+                className="color"
+                style={{
+                  backgroundColor: selection["active_trigger_color"],
+                }}
+              ></span>
+              <span
+                className="label"
+                onClick={() => handleActiveColorPicker("active_trigger_color")}
+              >
+                Trigger
+              </span>
             </div>
           )}
         </div>
+      )}
+      {!!activeColorPicker && (
+        <BlankOverlay setActiveColorPicker={setActiveColorPicker} />
       )}
     </Wrapper>
   );

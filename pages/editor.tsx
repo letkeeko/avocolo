@@ -8,6 +8,7 @@ import Panel from "../components/panel/panel";
 import TemplateOne from "../template/template";
 import { COLOR, SCREEN } from "../components/variables";
 import { defaultSelections } from "../template/_static_data";
+import { useDebouncedCallback } from "use-debounce";
 
 type WrapperProps = {
   isSidebarOpen: boolean;
@@ -30,6 +31,10 @@ const Editor: NextPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selections, setSelections] = useState({});
 
+  const debounce = useDebouncedCallback((value) => {
+    setSelections(value);
+  }, 150);
+
   useEffect(() => {
     // to be added
     const isLocalStorage = false;
@@ -42,7 +47,8 @@ const Editor: NextPage = () => {
   }, []);
 
   const handleChange = (updatedValue: object) => {
-    setSelections({ ...selections, ...updatedValue });
+    debounce(updatedValue);
+    // setSelections({ ...selections, ...updatedValue });
   };
 
   return (
