@@ -40,7 +40,6 @@ const Wrapper = styled.div`
   }
 
   .color {
-    background: blue;
     min-width: 12px;
     min-height: 12px;
     display: inline-block;
@@ -76,6 +75,7 @@ const Wrapper = styled.div`
     }
 
     .absolute-color-picker {
+      background-color: ${COLOR.white};
       position: absolute;
       top: 37px;
       z-index: 10;
@@ -86,18 +86,6 @@ const Wrapper = styled.div`
         margin: 10px 0 0 0;
         padding: 5px;
       }
-
-      /* &::after {
-        content: "";
-        background-color: ${COLOR.white};
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 150%;
-        height: calc(100% + 10px);
-        z-index: -1;
-        transform: translateX(-50%);
-      } */
     }
   }
 `;
@@ -117,7 +105,7 @@ export default function Dropdown(props: PropTypes) {
 
   const selection = selections[objKey] || {};
 
-  const getValueAndUpdate = (key: string, val: string) => {
+  const getValueAndUpdate = (key: string, val: string | boolean) => {
     // modify current object
     selections[objKey] = { ...selection, [key]: val };
 
@@ -128,6 +116,7 @@ export default function Dropdown(props: PropTypes) {
 
   const isNestedDropdown = activeDropdown.includes(objKey + "-nested");
 
+  // *** color handler
   const getActiveClassName = () => {
     if (isDropdownOpen) return "heading-trigger heading-trigger--active";
 
@@ -177,6 +166,11 @@ export default function Dropdown(props: PropTypes) {
 
     return null;
   };
+  // end color handler
+
+  // *** button fill handler
+
+  // end button fill handler
 
   return (
     <Wrapper>
@@ -358,9 +352,23 @@ export default function Dropdown(props: PropTypes) {
                   </div>
                   <div className="option option--nested">
                     <span className="icon">
-                      <VscCheck />
+                      {selection["button_is_fill"] ? (
+                        <VscCheck />
+                      ) : (
+                        <VscChromeMinimize />
+                      )}
                     </span>
-                    <span className="label">Fill</span>
+                    <span
+                      className="label"
+                      onClick={() =>
+                        getValueAndUpdate(
+                          "button_is_fill",
+                          !selection["button_is_fill"]
+                        )
+                      }
+                    >
+                      Fill
+                    </span>
                   </div>
                 </>
               )}
