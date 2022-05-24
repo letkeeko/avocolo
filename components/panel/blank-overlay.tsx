@@ -1,11 +1,4 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { PropTypes } from "../types/panel.types";
-import Logo from "../../svg/avocolo-logo.svg";
-import Dropdown from "./dropdown";
-import Button from "../button";
-import { COLOR, SCREEN } from "../variables";
-import { VscEdit } from "react-icons/vsc";
 
 const Wrapper = styled.aside`
   background-color: rgba(255, 255, 255, 0);

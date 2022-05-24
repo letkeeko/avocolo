@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import { PropTypes } from "../types/panel.types";
 import Logo from "../../svg/avocolo-logo.svg";
 import Dropdown from "./dropdown";
-import Button from "../button";
-import { COLOR, SCREEN } from "../variables";
+import { COLOR } from "../variables";
 import { VscEdit, VscSave, VscArrowLeft, VscRedo } from "react-icons/vsc";
 
 const Wrapper = styled(motion.aside)`
@@ -113,7 +112,13 @@ const animateItem = {
 export default function Panel(props: PropTypes) {
   const [activeDropdown, setActiveDropdown] = useState<string[]>([]);
 
-  const { selections, handleChange, toggleSidebar, isSidebarOpen } = props;
+  const {
+    selections,
+    handleChange,
+    toggleSidebar,
+    isSidebarOpen,
+    handleReset,
+  } = props;
 
   const handleDropdownClick = (value: string) => {
     if (activeDropdown.includes(value)) {
@@ -206,7 +211,7 @@ export default function Panel(props: PropTypes) {
               </span>
               <span className="label">Save and share</span>
             </div>
-            <div className="btn">
+            <div className="btn" onClick={handleReset}>
               <span className="icon">
                 <VscRedo />
               </span>

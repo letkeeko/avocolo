@@ -3,4 +3,5 @@ export type PropTypes = {
   handleChange: (value: object) => void;
   isSidebarOpen: boolean;
   toggleSidebar: () => void;
+  handleReset: () => void;
 };

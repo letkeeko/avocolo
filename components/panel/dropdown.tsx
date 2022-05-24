@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 import { PropTypes } from "../types/dropdown.types";
-import Button from "../button";
 import BlankOverlay from "./blank-overlay";
 import {
   VscRefresh,
@@ -11,9 +10,8 @@ import {
   VscCheck,
   VscChromeMinimize,
 } from "react-icons/vsc";
-import { COLOR, SCREEN } from "../variables";
+import { COLOR } from "../variables";
 import useImage from "../../hooks/use-image";
-import getRandomPhoto from "../../utils/get-random-image";
 
 const Wrapper = styled(motion.div)`
   .heading-trigger {

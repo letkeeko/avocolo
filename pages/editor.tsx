@@ -3,12 +3,12 @@ import type { NextPage } from "next";
 import SEO from "../components/seo";
 import styled from "styled-components";
 import Layout from "../components/layout";
-import Button from "../components/button";
 import Panel from "../components/panel/panel";
 import TemplateOne from "../template/template";
-import { COLOR, SCREEN } from "../components/variables";
 import { defaultSelections } from "../template/_static_data";
 import { useDebouncedCallback } from "use-debounce";
+import saveToLocalStorage from "../utils/save-to-localstorage";
+import scrollToTop from "../utils/scroll-to-top";
 
 type WrapperProps = {
   isSidebarOpen: boolean;
@@ -28,14 +28,14 @@ const Editor: NextPage = () => {
 
   const debounce = useDebouncedCallback((value) => {
     setSelections(value);
+    saveToLocalStorage(value);
   }, 150);
 
   useEffect(() => {
     // to be added
-    const isLocalStorage = false;
-
-    if (isLocalStorage) {
-      setSelections(isLocalStorage);
+    const unsavedData = localStorage.getItem("unsaved");
+    if (!!unsavedData) {
+      setSelections(JSON.parse(unsavedData));
     } else {
       setSelections(defaultSelections);
     }
@@ -47,6 +47,12 @@ const Editor: NextPage = () => {
   };
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+  const handleReset = () => {
+    localStorage.setItem("unsaved", "");
+    setSelections(defaultSelections);
+    scrollToTop();
+  };
 
   return (
     <Layout>
@@ -61,6 +67,7 @@ const Editor: NextPage = () => {
           selections={selections}
           handleChange={handleChange}
           toggleSidebar={toggleSidebar}
+          handleReset={handleReset}
         />
 
         <div className="site-wrapper">
