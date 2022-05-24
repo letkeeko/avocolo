@@ -51,25 +51,25 @@ export const defaultSelections = {
 export const slideList = [
   {
     description:
-      "<p>Donec quis porttitor libero, ut placerat sapien. Mauris ac ullamcorper nibh. Sed ac malesuada libero. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga sed ac malesuada mauris ac ullamcorper libero semper.",
+      "<p>Caramels halvah lemon drops tiramisu tootsie roll cupcake wafer candy sweet roll. Halvah chocolate gummies. Pastry candy jelly-o jujubes croissant chocolate bar ice cream oat cake.</p><p>Jelly-o jelly beans sweet roll chupa chups gummies halvah bonbon sweet lemon drops roll topping.</p>",
     name: "Hendrerit Magna,",
     company: "Praesent consectetur",
   },
   {
     description:
-      "<p>Consectetur adipiscing elit, quis porttitor libero sed do libero ut placerat sapien eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
+      "<p>Gingerbread cupcake gingerbread fruitcake marshmallow jelly beans. Sweet chocolate cake dessert donut croissant candy canes bonbon pie. Biscuit donut sesame snaps halvah gummies jelly marshmallow chupa chups candy icing candy canes marshmallow carrot cake candy canes marzipan chocolate cake halvah shortbread donut cupcake wafer ice cream.</p>",
     name: "Hendrerit Magna,",
     company: "Praesent consectetur",
   },
   {
     description:
-      "<p>Proin pulvinar justo sit amet dui cursus, sit amet ultrices mi congue. Etiam lobortis consequat interdum. Donec elementum tempus justo, nec sollicitudin nulla. Nam vulputate dolor erat, quis tempus augue tempor sed. Integer non arcu non diam volutpat sagittis sit amet ut sem. Nullam tempus dolor sit amet pretium mattis. Maecenas volutpat tincidunt dui nec semper. Donec at egestas est. Praesent volutpat semper ante tempus fermentum.</p>",
+      "<p>Jelly jelly beans marzipan sweet roll gummi bears roll cupcake wafer candy sweet roll. Halvah chocolate gummies. Pastry candy jelly-o jujubes croissant chocolate bar ice cream oat cake.</p><p>Cake chocolate bar cupcake chupa chups gummies halvah bonbon sweet roll topping cheesecake fruitcake donut lemon.</p>",
     name: "Hendrerit Magna,",
     company: "Praesent consectetur",
   },
   {
     description:
-      "<p>Aenean interdum lorem in viverra vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam imperdiet sapien in nulla faucibus, eu iaculis neque egestas. Suspendisse dui nibh, facilisis quis scelerisque a, iaculis eget tellus. Sed volutpat eleifend dapibus. Phasellus imperdiet quis metus nec congue. Aenean eu dignissim sapien, id dapibus nulla. Aliquam vehicula, magna vitae consectetur vulputate, est est dapibus dui, vitae ullamcorper.</p>",
+      "<p>Cotton candy candy lollipop croissant sugar plum cake cookie muffin. Wafer pudding topping cake gummies lemon drops. Gummi bears oat cake tart jelly beans jujubes dragée gummi bears. Fruitcake muffin chupa chups cake cookie sweet roll cupcake jelly beans shortbread tootsie roll lollipop biscuit jelly. Cake pie croissant jelly candy topping halvah fruitcake</p>",
     name: "Hendrerit Magna,",
     company: "Praesent consectetur",
   },
@@ -77,25 +77,24 @@ export const slideList = [
 
 export const accordionList = [
   {
-    heading:
-      "Nam vel varius libero, vitae egestas leo. Aliquam purus felis etiam",
+    heading: "Marshmallow chocolate bar donut sweet roll caramels topping",
     description:
-      "<p>Fusce cursus nulla ornare eros luctus, elementum blandit libero porta. Fusce vel lacus dapibus, vulputate augue ut, pulvinar nibh. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer pharetra fermentum metus ac tristique  Pellentesque sodales elementum quam a imperdiet.</p><p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga sed ac malesuada mauris ac ullamcorper libero semper.</p>",
+      "<p>Carrot cake jujubes dessert danish chocolate danish halvah cupcake. Bear claw jujubes croissant chocolate cake marzipan carrot cake carrot cake candy canes bear claw.</p><p>Toffee halvah jujubes caramels powder sesame snaps tootsie roll candy. Jujubes lollipop jujubes sweet macaroon gummies oat cake. Muffin ice cream pudding oat cake sugar plum gummi bears muffin sweet. Croissant gingerbread sweet roll muffin sweet. Muffin cake cookie lemon drops ice cream gummies chocolate cupcake icing. Dragée jujubes lollipop chocolate sugar plum. Macaroon jelly beans tootsie roll tiramisu sweet roll tiramisu sugar plum.</p>",
+  },
+  {
+    heading: "Sesame snaps cookie candy canes chupa chups cake croissant",
+    description:
+      "<p>Jelly beans jelly-o ice cream brownie halvah biscuit jelly beans pastry. Wafer cheesecake gummies jelly caramels. Halvah jelly-o tiramisu chupa chups candy cupcake. Bear claw jujubes croissant chocolate cake marzipan carrot cake carrot cake candy canes bear claw.</p><p>Cheesecake sugar plum chupa chups apple pie carrot cake pie macaroon. Icing brownie sweet roll powder sesame snaps tootsie roll candy. Jujubes lollipop jujubes sweet macaroon gummies oat cake. Muffin ice cream pudding oat cake sugar plum gummi bears muffin sweet. Croissant gingerbread sweet roll muffin sweet. Muffin cake cookie lemon drops ice cream gummies chocolate cupcake icing. Dragée jujubes lollipop chocolate sugar plum. Macaroon jelly beans tootsie roll tiramisu sweet roll tiramisu sugar plum.</p>",
+  },
+  {
+    heading: "Muffin donut croissant ice cream jelly. wafer biscuit jelly cake",
+    description:
+      "<p>Sweet roll biscuit pastry sweet cookie. Sugar plum halvah sugar plum halvah pudding gummi bears cheesecake cheesecake. Jelly jujubes oat cake sweet roll biscuit bonbon candy canes. Apple pie tootsie roll tart sesame snaps jelly beans chocolate bar apple pie bear claw. Chocolate cake cake jelly beans lollipop dessert sugar plum. Chupa chups wafer macaroon pie fruitcake. Sesame snaps candy canes oat cake candy carrot cake pie pudding tart.</p><p>Toffee marzipan carrot cake tootsie roll pie pastry candy canes.</p><p>Gummies cheesecake gingerbread caramels fruitcake marshmallow lollipop. Cupcake bonbon brownie cookie bear claw carrot cake gummies.</p>",
   },
   {
     heading:
-      "Cras elementum nisl ex, id viverra nam eu porttitor diam egestas elit",
+      "Pastry ice cream tart sesame snaps pastry chupa chups lollipop beans",
     description:
-      "<p>Nullam scelerisque nunc vitae erat sodales lacinia. Aliquam erat volutpat.</p><p>Dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-  },
-  {
-    heading: "Duis aliquam molestie sem. Fusce vel lacus dapibus sitamet ipsum",
-    description:
-      "<p>Etiam lobortis consequat interdum. Donec elementum tempus justo, nec sollicitudin nulla. Nam vulputate dolor erat, quis tempus augue tempor sed. Integer non arcu non diam volutpat sagittis sit amet ut sem. Nullam tempus dolor sit amet pretium mattis. Maecenas volutpat tincidunt dui nec semper. Donec at egestas est. Praesent volutpat semper ante tempus fermentum.</p>",
-  },
-  {
-    heading: "Mauris quis lacus in justo auctor ultricies  consectetur finibus",
-    description:
-      "<p>Phasellus lectus dolor, sodales non lacus in, tristique viverra nulla. Aenean blandit leo fringilla tempus viverra. </p><p>Aenean interdum lorem in viverra vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam imperdiet sapien in nulla faucibus, eu iaculis neque egestas. Suspendisse dui nibh, facilisis quis scelerisque a, iaculis eget tellus. Sed volutpat eleifend dapibus. Phasellus imperdiet quis metus nec congue. Aenean eu dignissim sapien, id dapibus nulla. Aliquam vehicula, magna vitae consectetur vulputate, est est dapibus dui, vitae ullamcorper.</p>",
+      "<p>Pastry candy danish tart pie. Danish ice cream candy canes croissant fruitcake pudding chupa chups ice cream.</p><p>Dessert icing pastry powder tootsie roll bear claw icing powder. Sesame snaps cookie oat cake halvah tootsie roll apple pie chocolate bar. Cotton candy gingerbread danish apple pie liquorice caramels gingerbread tiramisu topping. gummies sesame snaps</p>",
   },
 ];

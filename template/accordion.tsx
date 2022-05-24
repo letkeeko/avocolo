@@ -179,7 +179,7 @@ export default function Accordion(props: PropTypes) {
       <div className="inner-wrapper">
         <div className="flex-row">
           <motion.div className="col col--one" {...whileInView}>
-            <Heading as="h2">Feugiat vestibulum enim sed nec</Heading>
+            <Heading as="h2">Pudding powder sugar donut tart</Heading>
             <div>
               <ul className="accordion-list">
                 {accordionList.map((item, index) => (

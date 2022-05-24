@@ -99,30 +99,41 @@ export default function Cta(props: PropTypes) {
           </motion.div>
           <motion.div className="col col--two" {...whileInView}>
             <Heading as="h2" className="mb">
-              Donec quis porttitor libero, ut placerat sapien
+              Powder biscuit cake sweet bear claw
             </Heading>
             <Text className="mb">
-              Maecenas fermentum imperdiet velit, sed condimentum justo gravida
-              eget. Sed in convallis nisi, ac bibendum neque. In varius, mauris
-              quis ultricies dictum, leo sem varius quam, et pellentesque.
+              Lollipop chocolate bar dragée icing sesame snaps tart gummies
+              gingerbread gingerbread. Toffee chocolate cake jelly beans wafer
+              marzipan halvah gummi. Cake liquorice tart gingerbread chocolate
+              cake candy bonbon muffin.
             </Text>
             <ul className="mb-lg">
               <li className="mb">
                 <Text>
-                  Cras vulputate nisl sit amet mi aliquet, a venenatis sem
-                  pellentesque. Proin tincidunt suscipit en
+                  Fruitcake icing jelly beans gingerbread biscuit. Powder
+                  marzipan gummi bears cheesecake wafer.
                 </Text>
               </li>
               <li className="mb">
                 <Text>
-                  Cras vulputate nisl sit amet mi aliquet, a venenatis sem
-                  pellentesque. Proin tincidunt suscipit en
+                  Pie chocolate cake tart carrot cake apple pie jujubes donut.
+                  Marshmallow icing shortbread shortbread chupa chups. Tiramisu
+                  cookie pastry cupcake fruitcake wafer ice cream chocolate cake
+                  candy cookie.
                 </Text>
               </li>
               <li className="mb">
                 <Text>
-                  Cras vulputate nisl sit amet mi aliquet, a venenatis sem
-                  pellentesque. Proin tincidunt suscipit en
+                  Topping pie chocolate cake bonbon. Danish croissant caramels
+                  sweet roll jujubes donut sugar plum bonbon candy. Topping
+                  chocolate candy marshmallow gummi bears chupa chups fruitcake.
+                </Text>
+              </li>
+              <li className="mb">
+                <Text>
+                  Icing icing cookie candy canes pie bear claw macaroon.
+                  Chocolate bar candy canes sesame snaps jelly oat cake tiramisu
+                  danish cheesecake.
                 </Text>
               </li>
             </ul>

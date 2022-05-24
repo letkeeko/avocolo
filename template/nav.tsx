@@ -85,7 +85,7 @@ const Wrapper = styled.nav<WrapperProps>`
       display: none;
     }
 
-    a {
+    p {
       color: ${({ textColor }) => textColor};
       display: block;
       text-align: center;
@@ -159,18 +159,18 @@ export default function Nav(props: PropTypes) {
             animate="show"
             exit="hidden"
           >
-            <Link href="/editor">
-              <motion.a variants={animateItem}>Home</motion.a>
-            </Link>
-            <Link href="/editor">
-              <motion.a variants={animateItem}>About</motion.a>
-            </Link>
-            <Link href="/editor">
-              <motion.a variants={animateItem}>Services</motion.a>
-            </Link>
-            <Link href="/editor">
-              <motion.a variants={animateItem}>Contact</motion.a>
-            </Link>
+            <motion.p className="cursor" variants={animateItem}>
+              Home
+            </motion.p>
+            <motion.p className="cursor" variants={animateItem}>
+              About
+            </motion.p>
+            <motion.p className="cursor" variants={animateItem}>
+              Services
+            </motion.p>
+            <motion.p className="cursor" variants={animateItem}>
+              Contact
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>

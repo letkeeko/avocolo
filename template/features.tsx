@@ -78,12 +78,12 @@ export default function Features(props: PropTypes) {
       <div className="inner-wrapper">
         <motion.div className="description" {...whileInView}>
           <Heading className="mb" as="h2">
-            Lorem ipsum dolor sit amet
+            Wafer tiramisu macaroon biscuit
           </Heading>
           <Text>
-            Maecenas fermentum imperdiet velit, sed condimentum justo gravida
-            eget. Sed in convallis nisi, ac bibendum neque. In varius, mauris
-            quis ultricies dictum, leo sem varius quam.
+            Gummies gummi bears jelly-o jelly-o lollipop pudding bear claw
+            tiramisu candy. Apple pie cake pastry marshmallow bonbon. Chocolate
+            cake candy canes wafer tiramisu.
           </Text>
         </motion.div>
 
@@ -91,22 +91,22 @@ export default function Features(props: PropTypes) {
           <motion.li className="item-list__each" {...whileInView}>
             <GiBananaPeeled />
             <Text>
-              Nulla vitae eros massa. Sed sodales urna eget justo pharetra, nec
-              blandit est varius bibendum in varius.
+              Cake bonbon donut chocolate bar croissant cheesecake. Marzipan
+              soufflé sesame snaps carrot.
             </Text>
           </motion.li>
           <motion.li className="item-list__each" {...whileInView}>
             <GiStrawberry />
             <Text>
-              Aenean sed tellus metus. Aliquam nulla eros, semper non lacus et,
-              maximus sollicitudin.
+              Topping croissant powder sweet roll liquorice gummies apple pie
+              bonbon marzipan. Jelly gummies.
             </Text>
           </motion.li>
           <motion.li className="item-list__each" {...whileInView}>
             <GiWatermelon />
             <Text>
-              Phasellus ligula metus, ullamcorper dictum lobortis ut, hendrerit
-              ut magna. Sed in convallis nisi aliquam.
+              Cotton candy tart powder cupcake gingerbread. Topping croissant
+              halvah cake candy carrot sweet roll oat.
             </Text>
           </motion.li>
         </ul>

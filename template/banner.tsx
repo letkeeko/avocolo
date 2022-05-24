@@ -84,12 +84,12 @@ export default function Banner(props: PropTypes) {
         <div className="flex-row">
           <motion.div className="col col--one" {...whileInView}>
             <Heading as="h1" className="mb">
-              Lorem ipsum dolor sit amet
+              Cheesecake candy canes marshmallow sweet
             </Heading>
             <Text className="mb-med">
-              Maecenas fermentum imperdiet velit, sed condimentum justo gravida
-              eget. Sed in convallis nisi, ac bibendum neque. In varius, mauris
-              quis ultricies dictum, leo sem varius quam, et pellentesque.
+              Pastry cupcake donut chocolate pudding pie pastry gummies jelly.
+              Muffin liquorice biscuit sesame snaps gingerbread halvah. Danish
+              jelly wafer oat cake jujubes carrot cake brownie pastry.
             </Text>
             <Button
               customStyles={{
