@@ -5,7 +5,7 @@ import { PropTypes } from "../types/panel.types";
 import Link from "next/link";
 import Logo from "../../svg/avocolo-logo.svg";
 import Dropdown from "./dropdown";
-import { COLOR } from "../variables";
+import { COLOR, SCREEN } from "../variables";
 import {
   VscEdit,
   VscSave,
@@ -15,6 +15,7 @@ import {
 } from "react-icons/vsc";
 
 const Wrapper = styled(motion.aside)`
+  background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 10px 0 20px -6px rgba(58, 58, 98, 0.15);
   position: fixed;
   width: 250px;
@@ -25,6 +26,9 @@ const Wrapper = styled(motion.aside)`
   overflow: auto;
   display: flex;
   flex-direction: column;
+  @media ${SCREEN.tablet} {
+    background-color: ${COLOR.white};
+  }
 
   &::-webkit-scrollbar {
     width: 6px;

@@ -15,7 +15,7 @@ type WrapperProps = {
 const Wrapper = styled.section<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ textColor }) => textColor};
-  padding: 60px 0 30px 0;
+  padding: 55px 0 20px 0;
   @media ${SCREEN.tablet} {
     padding: 110px 0 90px 0;
   }

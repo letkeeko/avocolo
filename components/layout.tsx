@@ -6,8 +6,6 @@ const Wrapper = styled.div`
   background-color: ${COLOR.white};
   color: ${COLOR.black};
   font-family: ${FONT.primary};
-  max-width: 1920px;
-  margin: 0 auto;
 `;
 
 export default function Layout(props: PropTypes) {

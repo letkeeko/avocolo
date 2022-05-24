@@ -54,8 +54,6 @@ const Wrapper = styled(motion.div)`
   }
 
   .option {
-    display: flex;
-    align-items: center;
     padding: 9px 24px;
     position: relative;
 
@@ -78,6 +76,8 @@ const Wrapper = styled(motion.div)`
 
     .trigger-btn {
       cursor: pointer;
+      display: flex;
+      align-items: center;
     }
 
     .absolute-color-picker {

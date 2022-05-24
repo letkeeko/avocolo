@@ -7,6 +7,7 @@ import Panel from "../components/panel/panel";
 import TemplateOne from "../template/template";
 import { defaultSelections } from "../template/_static_data";
 import { useDebouncedCallback } from "use-debounce";
+import { SCREEN } from "../components/variables";
 import saveToLocalStorage from "../utils/save-to-localstorage";
 import scrollToTop from "../utils/scroll-to-top";
 
@@ -16,9 +17,11 @@ type WrapperProps = {
 
 const Wrapper = styled.main<WrapperProps>`
   .site-wrapper {
-    width: ${({ isSidebarOpen }) =>
-      isSidebarOpen ? "calc(100% - 250px)" : "100%"};
-    margin: ${({ isSidebarOpen }) => (isSidebarOpen ? "0 0 0 auto" : "0")};
+    @media ${SCREEN.tablet} {
+      width: ${({ isSidebarOpen }) =>
+        isSidebarOpen ? "calc(100% - 250px)" : "100%"};
+      margin: ${({ isSidebarOpen }) => (isSidebarOpen ? "0 0 0 auto" : "0")};
+    }
   }
 `;
 
