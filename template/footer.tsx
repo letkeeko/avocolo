@@ -104,6 +104,10 @@ const Wrapper = styled.footer<WrapperProps>`
       padding: 80px 0 40px 0;
     }
 
+    a {
+      color: ${({ textColor }) => textColor};
+    }
+
     p {
       font-size: 0.65rem;
       font-weight: 300;
@@ -184,9 +188,18 @@ export default function Footer(props: PropTypes) {
             <motion.div className="flex-row flex-row--center" {...whileInView}>
               <p>&copy; Company 2022</p>
               <span>|</span>
-              <p className="cursor">Terms and conditions</p>
+              <p>
+                Images from{" "}
+                <a
+                  href="https://unsplash.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Unsplash
+                </a>
+              </p>
               <span>|</span>
-              <p className="cursor">Privacy policy</p>
+              <p className="cursor">Terms and Privacy</p>
             </motion.div>
           </div>
         </div>

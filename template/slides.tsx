@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { PropTypes } from "../components/types/template.types";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import { SCREEN, whileInView } from "../components/variables";
@@ -65,17 +66,18 @@ const Wrapper = styled.section<WrapperProps>`
 
         .col {
           &--one {
-            img {
-              display: block;
-              width: 100px;
-              border-radius: 50%;
-              margin: 0 auto 20px auto;
-              @media ${SCREEN.tablet} {
-                margin: 0;
-              }
-              @media ${SCREEN.laptop} {
-                width: 120px;
-              }
+            border-radius: 50%;
+            overflow: hidden;
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px auto;
+            @media ${SCREEN.tablet} {
+              margin: 0;
+            }
+            @media ${SCREEN.laptop} {
+              width: 120px;
+              height: 120px;
             }
           }
 
@@ -149,6 +151,7 @@ export default function Slides(props: PropTypes) {
   const [currentActive, setCurrentActive] = useState(0);
 
   const {
+    featured_image,
     container_background_color,
     container_text_color,
     dots_color,
@@ -195,7 +198,14 @@ export default function Slides(props: PropTypes) {
                     animate="show"
                   >
                     <motion.div className="col col--one" variants={animateItem}>
-                      <img src={item.image} alt="Amazing portrait" />
+                      <Image
+                        src={featured_image}
+                        alt="Amazing portrait"
+                        width={300}
+                        height={300}
+                        placeholder="blur"
+                        blurDataURL={featured_image}
+                      />
                     </motion.div>
                     <div className="col col--two">
                       <motion.div

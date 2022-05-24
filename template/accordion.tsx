@@ -145,6 +145,7 @@ export default function Accordion(props: PropTypes) {
   const [currentActives, setCurrentActives] = useState<number[]>([0]);
 
   const {
+    featured_image,
     container_background_color,
     container_text_color,
     active_trigger_color,
@@ -207,7 +208,7 @@ export default function Accordion(props: PropTypes) {
             </div>
           </motion.div>
           <motion.div className="col col--two" {...whileInView}>
-            <img src="https://picsum.photos/900/568" alt="Amazing asset" />
+            <img src={featured_image} alt="Amazing asset" />
           </motion.div>
         </div>
       </div>

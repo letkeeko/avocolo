@@ -12,6 +12,8 @@ import {
   VscChromeMinimize,
 } from "react-icons/vsc";
 import { COLOR, SCREEN } from "../variables";
+import useImage from "../../hooks/use-image";
+import getRandomPhoto from "../../utils/get-random-image";
 
 const Wrapper = styled(motion.div)`
   .heading-trigger {
@@ -97,6 +99,8 @@ const Wrapper = styled(motion.div)`
 export default function Dropdown(props: PropTypes) {
   const [activeColorPicker, setActiveColorPicker] = useState("");
 
+  const [isLoading, fetchNewImage] = useImage();
+
   const {
     label,
     selections,
@@ -150,6 +154,14 @@ export default function Dropdown(props: PropTypes) {
     return activeColorPicker === val;
   };
 
+  const handleNewImage = async () => {
+    const result = await fetchNewImage(objKey === "slides" && "square");
+
+    if (result) {
+      getValueAndUpdate("featured_image", result);
+    }
+  };
+
   const renderColorPicker = (key: string) => {
     if (isColorPicker(key))
       return (
@@ -173,10 +185,6 @@ export default function Dropdown(props: PropTypes) {
   };
   // end color handler
 
-  // *** button fill handler
-
-  // end button fill handler
-
   return (
     <Wrapper variants={variants}>
       <div className={getActiveClassName()}>
@@ -198,7 +206,13 @@ export default function Dropdown(props: PropTypes) {
               <span className="icon">
                 <VscRefresh />
               </span>
-              <span className="label">Image</span>
+              <span
+                className="label"
+                style={{ pointerEvents: isLoading ? "none" : "all" }}
+                onClick={handleNewImage}
+              >
+                {isLoading ? "Loading..." : "Image"}
+              </span>
             </div>
           )}
 

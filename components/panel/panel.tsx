@@ -6,7 +6,7 @@ import Logo from "../../svg/avocolo-logo.svg";
 import Dropdown from "./dropdown";
 import Button from "../button";
 import { COLOR, SCREEN } from "../variables";
-import { VscEdit, VscSave, VscArrowLeft } from "react-icons/vsc";
+import { VscEdit, VscSave, VscArrowLeft, VscRedo } from "react-icons/vsc";
 
 const Wrapper = styled(motion.aside)`
   box-shadow: 10px 0 20px -6px rgba(58, 58, 98, 0.15);
@@ -42,16 +42,19 @@ const Wrapper = styled(motion.aside)`
     }
   }
 
-  .save-btn {
+  .other-action {
     margin: auto 0 0 0;
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    border-top: 1px solid #e8e8e8;
-    cursor: pointer;
 
-    .icon {
-      margin: 0 8px -4px 0;
+    .btn {
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #e8e8e8;
+      cursor: pointer;
+
+      .icon {
+        margin: 0 8px -4px 0;
+      }
     }
   }
 `;
@@ -196,11 +199,19 @@ export default function Panel(props: PropTypes) {
               variants={animateItem}
             />
           </div>
-          <div className="save-btn">
-            <span className="icon">
-              <VscSave />
-            </span>
-            <span className="label">Save and share</span>
+          <div className="other-action">
+            <div className="btn">
+              <span className="icon">
+                <VscSave />
+              </span>
+              <span className="label">Save and share</span>
+            </div>
+            <div className="btn">
+              <span className="icon">
+                <VscRedo />
+              </span>
+              <span className="label">Reset</span>
+            </div>
           </div>
         </Wrapper>
       )}

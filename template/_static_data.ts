@@ -1,3 +1,5 @@
+import getInitialImage from "../utils/get-initial-image";
+
 export const defaultSelections = {
   navigation: {
     container_background_color: "#F8B400",
@@ -5,7 +7,7 @@ export const defaultSelections = {
     logo_color: "#FF6363",
   },
   banner: {
-    featured_image: "/",
+    featured_image: getInitialImage(),
     container_background_color: "#FAF5E4",
     container_text_color: "#125B50",
     button_background_color: "#FF6363",
@@ -18,7 +20,7 @@ export const defaultSelections = {
     icon_color: "#FAF5E4",
   },
   cta: {
-    featured_image: "/",
+    featured_image: getInitialImage(),
     container_background_color: "#FAF5E4",
     container_text_color: "#125B50",
     button_background_color: "#FF6363",
@@ -26,14 +28,14 @@ export const defaultSelections = {
     button_is_fill: false,
   },
   slides: {
-    featured_image: "/",
+    featured_image: getInitialImage("square"),
     container_background_color: "#125B50",
     container_text_color: "#FAF5E4",
     dots_color: "#FF6363",
     active_dot_color: "#F8B400",
   },
   accordion: {
-    featured_image: "/",
+    featured_image: getInitialImage(),
     container_background_color: "#FAF5E4",
     container_text_color: "#125B50",
     active_trigger_color: "#F8B400",
@@ -48,28 +50,24 @@ export const defaultSelections = {
 
 export const slideList = [
   {
-    image: "https://picsum.photos/400/400",
     description:
       "<p>Donec quis porttitor libero, ut placerat sapien. Mauris ac ullamcorper nibh. Sed ac malesuada libero. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga sed ac malesuada mauris ac ullamcorper libero semper.",
     name: "Hendrerit Magna,",
     company: "Praesent consectetur",
   },
   {
-    image: "https://picsum.photos/400/400",
     description:
       "<p>Consectetur adipiscing elit, quis porttitor libero sed do libero ut placerat sapien eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
     name: "Hendrerit Magna,",
     company: "Praesent consectetur",
   },
   {
-    image: "https://picsum.photos/400/400",
     description:
       "<p>Proin pulvinar justo sit amet dui cursus, sit amet ultrices mi congue. Etiam lobortis consequat interdum. Donec elementum tempus justo, nec sollicitudin nulla. Nam vulputate dolor erat, quis tempus augue tempor sed. Integer non arcu non diam volutpat sagittis sit amet ut sem. Nullam tempus dolor sit amet pretium mattis. Maecenas volutpat tincidunt dui nec semper. Donec at egestas est. Praesent volutpat semper ante tempus fermentum.</p>",
     name: "Hendrerit Magna,",
     company: "Praesent consectetur",
   },
   {
-    image: "https://picsum.photos/400/400",
     description:
       "<p>Aenean interdum lorem in viverra vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam imperdiet sapien in nulla faucibus, eu iaculis neque egestas. Suspendisse dui nibh, facilisis quis scelerisque a, iaculis eget tellus. Sed volutpat eleifend dapibus. Phasellus imperdiet quis metus nec congue. Aenean eu dignissim sapien, id dapibus nulla. Aliquam vehicula, magna vitae consectetur vulputate, est est dapibus dui, vitae ullamcorper.</p>",
     name: "Hendrerit Magna,",

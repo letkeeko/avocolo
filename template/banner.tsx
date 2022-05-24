@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { PropTypes } from "../components/types/template.types";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import Button from "../components/button";
@@ -65,6 +66,7 @@ const Wrapper = styled.header<WrapperProps>`
 
 export default function Banner(props: PropTypes) {
   const {
+    featured_image,
     container_background_color,
     container_text_color,
     button_background_color,
@@ -101,7 +103,14 @@ export default function Banner(props: PropTypes) {
             </Button>
           </motion.div>
           <motion.div className="col col--two" {...whileInView}>
-            <img src="https://picsum.photos/900/568" alt="Amazing asset" />
+            <Image
+              src={featured_image || "/og-avocolo.png"}
+              alt="Amazing asset"
+              width={900}
+              height={568}
+              placeholder="blur"
+              blurDataURL={featured_image || "/og-avocolo.png"}
+            />
           </motion.div>
         </div>
       </div>

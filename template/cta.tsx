@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { PropTypes } from "../components/types/template.types";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import Button from "../components/button";
@@ -70,6 +71,7 @@ const Wrapper = styled.section<WrapperProps>`
 
 export default function Cta(props: PropTypes) {
   const {
+    featured_image,
     container_background_color,
     container_text_color,
     button_background_color,
@@ -86,7 +88,14 @@ export default function Cta(props: PropTypes) {
       <div className="inner-wrapper">
         <div className="flex-row">
           <motion.div className="col col--one" {...whileInView}>
-            <img src="https://picsum.photos/900/568" alt="Amazing asset" />
+            <Image
+              src={featured_image}
+              alt="Amazing asset"
+              width={900}
+              height={568}
+              placeholder="blur"
+              blurDataURL={featured_image}
+            />
           </motion.div>
           <motion.div className="col col--two" {...whileInView}>
             <Heading as="h2" className="mb">
