@@ -15,14 +15,12 @@ import useImage from "../../hooks/use-image";
 
 const Wrapper = styled(motion.div)`
   .heading-trigger {
+    cursor: pointer;
     padding: 12px 24px;
     display: flex;
     align-items: center;
     border-top: 1px solid #e8e8e8;
-
-    a {
-      color: ${COLOR.black};
-    }
+    color: ${COLOR.black};
 
     &--active {
       background-color: #e8e8e8;
@@ -36,7 +34,6 @@ const Wrapper = styled(motion.div)`
 
   .label {
     font-size: 1.05rem;
-    cursor: pointer;
   }
 
   .icon {
@@ -67,6 +64,7 @@ const Wrapper = styled(motion.div)`
     }
 
     &--trigger {
+      cursor: pointer;
     }
 
     &--active {
@@ -76,6 +74,10 @@ const Wrapper = styled(motion.div)`
         transform: rotate(90deg);
         margin: 0 8px -2px 0;
       }
+    }
+
+    .trigger-btn {
+      cursor: pointer;
     }
 
     .absolute-color-picker {
@@ -185,32 +187,36 @@ export default function Dropdown(props: PropTypes) {
 
   return (
     <Wrapper variants={variants}>
-      <div className={getActiveClassName()}>
+      <a
+        className={getActiveClassName()}
+        onClick={() => handleDropdownClick(objKey)}
+        href={"#" + objKey}
+      >
         <span className="icon">
           <VscChevronRight />
         </span>
-        <a
-          className="label"
-          href={"#" + objKey}
-          onClick={() => handleDropdownClick(objKey)}
-        >
-          {label}
-        </a>
-      </div>
+        <span className="label">{label}</span>
+      </a>
       {isDropdownOpen && (
         <div className="list-option">
           {!!selection["featured_image"] && (
             <div className="option">
-              <span className="icon">
-                <VscRefresh />
-              </span>
-              <span
-                className="label"
-                style={{ pointerEvents: isLoading ? "none" : "all" }}
+              <div
+                className="trigger-btn"
+                role="button"
+                title="Get a new random image"
                 onClick={handleNewImage}
               >
-                {isLoading ? "Loading..." : "Image"}
-              </span>
+                <span className="icon">
+                  <VscRefresh />
+                </span>
+                <span
+                  className="label"
+                  style={{ pointerEvents: isLoading ? "none" : "all" }}
+                >
+                  {isLoading ? "Loading..." : "Image"}
+                </span>
+              </div>
             </div>
           )}
 
@@ -218,21 +224,21 @@ export default function Dropdown(props: PropTypes) {
             <div className="option">
               {renderColorPicker("container_background_color")}
 
-              <span
-                className="color"
-                style={{
-                  backgroundColor: selection["container_background_color"],
-                }}
-              ></span>
-
-              <span
-                className="label"
+              <div
+                className="trigger-btn"
+                role="button"
                 onClick={() =>
                   handleActiveColorPicker("container_background_color")
                 }
               >
-                Background
-              </span>
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["container_background_color"],
+                  }}
+                ></span>
+                <span className="label">Background</span>
+              </div>
             </div>
           )}
 
@@ -240,18 +246,19 @@ export default function Dropdown(props: PropTypes) {
             <div className="option">
               {renderColorPicker("container_text_color")}
 
-              <span
-                className="color"
-                style={{
-                  backgroundColor: selection["container_text_color"],
-                }}
-              ></span>
-              <span
-                className="label"
+              <div
+                className="trigger-btn"
+                role="button"
                 onClick={() => handleActiveColorPicker("container_text_color")}
               >
-                Text
-              </span>
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["container_text_color"],
+                  }}
+                ></span>
+                <span className="label">Text</span>
+              </div>
             </div>
           )}
 
@@ -259,18 +266,19 @@ export default function Dropdown(props: PropTypes) {
             <div className="option">
               {renderColorPicker("logo_color")}
 
-              <span
-                className="color"
-                style={{
-                  backgroundColor: selection["logo_color"],
-                }}
-              ></span>
-              <span
-                className="label"
+              <div
+                className="trigger-btn"
+                role="button"
                 onClick={() => handleActiveColorPicker("logo_color")}
               >
-                Logo
-              </span>
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["logo_color"],
+                  }}
+                ></span>
+                <span className="label">Logo</span>
+              </div>
             </div>
           )}
 
@@ -290,31 +298,33 @@ export default function Dropdown(props: PropTypes) {
                   <div className="option option--nested">
                     {renderColorPicker("dots_color")}
 
-                    <span
-                      className="color"
-                      style={{
-                        backgroundColor: selection["dots_color"],
-                      }}
-                    ></span>
-                    <span
-                      className="label"
+                    <div
+                      className="trigger-btn"
+                      role="button"
                       onClick={() => handleActiveColorPicker("dots_color")}
                     >
-                      Inactive
-                    </span>
+                      <span
+                        className="color"
+                        style={{
+                          backgroundColor: selection["dots_color"],
+                        }}
+                      ></span>
+                      <span className="label">Inactive</span>
+                    </div>
                   </div>
                   <div className="option option--nested">
                     {renderColorPicker("active_dot_color")}
 
-                    <span className="color"></span>
-                    <span
-                      className="label"
+                    <div
+                      className="trigger-btn"
+                      role="button"
                       onClick={() =>
                         handleActiveColorPicker("active_dot_color")
                       }
                     >
-                      Active
-                    </span>
+                      <span className="color"></span>
+                      <span className="label">Active</span>
+                    </div>
                   </div>
                 </>
               )}
@@ -337,49 +347,45 @@ export default function Dropdown(props: PropTypes) {
                   <div className="option option--nested">
                     {renderColorPicker("button_background_color")}
 
-                    <span
-                      className="color"
-                      style={{
-                        backgroundColor: selection["button_background_color"],
-                      }}
-                    ></span>
-                    <span
-                      className="label"
+                    <div
+                      className="trigger-btn"
+                      role="button"
                       onClick={() =>
                         handleActiveColorPicker("button_background_color")
                       }
                     >
-                      Background
-                    </span>
+                      <span
+                        className="color"
+                        style={{
+                          backgroundColor: selection["button_background_color"],
+                        }}
+                      ></span>
+                      <span className="label">Background</span>
+                    </div>
                   </div>
                   <div className="option option--nested">
                     {renderColorPicker("button_text_color")}
 
-                    <span
-                      className="color"
-                      style={{
-                        backgroundColor: selection["button_text_color"],
-                      }}
-                    ></span>
-                    <span
-                      className="label"
+                    <div
+                      className="trigger-btn"
+                      role="button"
                       onClick={() =>
                         handleActiveColorPicker("button_text_color")
                       }
                     >
-                      Text
-                    </span>
+                      <span
+                        className="color"
+                        style={{
+                          backgroundColor: selection["button_text_color"],
+                        }}
+                      ></span>
+                      <span className="label">Text</span>
+                    </div>
                   </div>
                   <div className="option option--nested">
-                    <span className="icon">
-                      {selection["button_is_fill"] ? (
-                        <VscCheck />
-                      ) : (
-                        <VscChromeMinimize />
-                      )}
-                    </span>
-                    <span
-                      className="label"
+                    <div
+                      className="trigger-btn"
+                      role="button"
                       onClick={() =>
                         getValueAndUpdate(
                           "button_is_fill",
@@ -387,8 +393,15 @@ export default function Dropdown(props: PropTypes) {
                         )
                       }
                     >
-                      Fill
-                    </span>
+                      <span className="icon">
+                        {selection["button_is_fill"] ? (
+                          <VscCheck />
+                        ) : (
+                          <VscChromeMinimize />
+                        )}
+                      </span>
+                      <span className="label">Fill</span>
+                    </div>
                   </div>
                 </>
               )}
@@ -399,18 +412,19 @@ export default function Dropdown(props: PropTypes) {
             <div className="option">
               {renderColorPicker("icon_color")}
 
-              <span
-                className="color"
-                style={{
-                  backgroundColor: selection["icon_color"],
-                }}
-              ></span>
-              <span
-                className="label"
+              <div
+                className="trigger-btn"
+                role="button"
                 onClick={() => handleActiveColorPicker("icon_color")}
               >
-                Icon
-              </span>
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["icon_color"],
+                  }}
+                ></span>
+                <span className="label">Icon</span>
+              </div>
             </div>
           )}
 
@@ -418,18 +432,19 @@ export default function Dropdown(props: PropTypes) {
             <div className="option">
               {renderColorPicker("active_trigger_color")}
 
-              <span
-                className="color"
-                style={{
-                  backgroundColor: selection["active_trigger_color"],
-                }}
-              ></span>
-              <span
-                className="label"
+              <div
+                className="trigger-btn"
+                role="button"
                 onClick={() => handleActiveColorPicker("active_trigger_color")}
               >
-                Trigger
-              </span>
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["active_trigger_color"],
+                  }}
+                ></span>
+                <span className="label">Trigger</span>
+              </div>
             </div>
           )}
         </div>

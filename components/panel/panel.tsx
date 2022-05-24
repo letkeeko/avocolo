@@ -2,10 +2,17 @@ import { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { PropTypes } from "../types/panel.types";
+import Link from "next/link";
 import Logo from "../../svg/avocolo-logo.svg";
 import Dropdown from "./dropdown";
 import { COLOR } from "../variables";
-import { VscEdit, VscSave, VscArrowLeft, VscRedo } from "react-icons/vsc";
+import {
+  VscEdit,
+  VscSave,
+  VscArrowLeft,
+  VscRedo,
+  VscHome,
+} from "react-icons/vsc";
 
 const Wrapper = styled(motion.aside)`
   box-shadow: 10px 0 20px -6px rgba(58, 58, 98, 0.15);
@@ -45,11 +52,12 @@ const Wrapper = styled(motion.aside)`
     margin: auto 0 0 0;
 
     .btn {
+      color: ${COLOR.black};
+      cursor: pointer;
       padding: 12px 24px;
       display: flex;
       align-items: center;
       border-top: 1px solid #e8e8e8;
-      cursor: pointer;
 
       .icon {
         margin: 0 8px -4px 0;
@@ -105,8 +113,8 @@ const animateContainer = {
 };
 
 const animateItem = {
-  hidden: { opacity: 0, x: 35 },
-  show: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, y: 35 },
+  show: { opacity: 1, y: 0 },
 };
 
 export default function Panel(props: PropTypes) {
@@ -227,6 +235,14 @@ export default function Panel(props: PropTypes) {
               </span>
               <span className="label">Reset</span>
             </div>
+            <Link href="/">
+              <a className="btn">
+                <span className="icon">
+                  <VscHome />
+                </span>
+                <span className="label">Back to home</span>
+              </a>
+            </Link>
           </div>
         </Wrapper>
       )}

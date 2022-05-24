@@ -29,7 +29,7 @@ const Editor: NextPage = () => {
   const debounce = useDebouncedCallback((value) => {
     setSelections(value);
     saveToLocalStorage(value);
-  }, 150);
+  }, 100);
 
   useEffect(() => {
     // to be added
