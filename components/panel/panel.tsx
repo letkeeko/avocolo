@@ -122,12 +122,22 @@ export default function Panel(props: PropTypes) {
 
   const handleDropdownClick = (value: string) => {
     if (activeDropdown.includes(value)) {
+      // user toggle - remove if already in there
       const filtered = activeDropdown.filter((active) => active !== value);
+
       setActiveDropdown(filtered);
+
       return;
     }
 
-    setActiveDropdown([...activeDropdown, value]);
+    // only accept multiple array value if with nested dropdown
+    if (value.includes("-nested")) {
+      setActiveDropdown([...activeDropdown, value]);
+
+      return;
+    }
+
+    setActiveDropdown([value]);
   };
 
   return (
