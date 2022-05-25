@@ -18,6 +18,7 @@ export default function BlankOverlay(props: {
   return (
     <Wrapper
       id="blank-overlay"
+      role="presentation"
       onClick={() => setActiveColorPicker("")}
     ></Wrapper>
   );

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Panel from "../panel";
+import Panel from "../panel/panel";
 
 describe("Panel", () => {
   it("should render", () => {

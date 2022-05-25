@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { HexColorPicker, HexColorInput } from "react-colorful";
 import { PropTypes } from "../types/dropdown.types";
+import ColorPicker from "./color-picker";
 import BlankOverlay from "./blank-overlay";
 import {
   VscRefresh,
@@ -79,20 +79,6 @@ const Wrapper = styled(motion.div)`
       display: flex;
       align-items: center;
     }
-
-    .absolute-color-picker {
-      background-color: ${COLOR.white};
-      position: absolute;
-      top: 37px;
-      z-index: 10;
-      border-radius: 6px;
-
-      input {
-        width: 100%;
-        margin: 10px 0 0 0;
-        padding: 5px;
-      }
-    }
   }
 `;
 
@@ -161,28 +147,6 @@ export default function Dropdown(props: PropTypes) {
       getValueAndUpdate("featured_image", result);
     }
   };
-
-  const renderColorPicker = (key: string) => {
-    if (isColorPicker(key))
-      return (
-        <div className="absolute-color-picker">
-          <HexColorPicker
-            color={selection[key]}
-            onChange={(e) => {
-              getValueAndUpdate(key, e);
-            }}
-          />
-          <HexColorInput
-            color={selection[key]}
-            onChange={(e) => {
-              getValueAndUpdate(key, e);
-            }}
-          />
-        </div>
-      );
-
-    return null;
-  };
   // end color handler
 
   return (
@@ -222,7 +186,13 @@ export default function Dropdown(props: PropTypes) {
 
           {!!selection["container_background_color"] && (
             <div className="option">
-              {renderColorPicker("container_background_color")}
+              {isColorPicker("container_background_color") && (
+                <ColorPicker
+                  color={selection["container_background_color"]}
+                  objKey={"container_background_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
 
               <div
                 className="trigger-btn"
@@ -244,7 +214,13 @@ export default function Dropdown(props: PropTypes) {
 
           {!!selection["container_text_color"] && (
             <div className="option">
-              {renderColorPicker("container_text_color")}
+              {isColorPicker("container_text_color") && (
+                <ColorPicker
+                  color={selection["container_text_color"]}
+                  objKey={"container_text_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
 
               <div
                 className="trigger-btn"
@@ -264,7 +240,13 @@ export default function Dropdown(props: PropTypes) {
 
           {!!selection["logo_color"] && (
             <div className="option">
-              {renderColorPicker("logo_color")}
+              {isColorPicker("logo_color") && (
+                <ColorPicker
+                  color={selection["logo_color"]}
+                  objKey={"logo_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
 
               <div
                 className="trigger-btn"
@@ -296,7 +278,13 @@ export default function Dropdown(props: PropTypes) {
               {isNestedDropdown && (
                 <>
                   <div className="option option--nested">
-                    {renderColorPicker("dots_color")}
+                    {isColorPicker("dots_color") && (
+                      <ColorPicker
+                        color={selection["dots_color"]}
+                        objKey={"dots_color"}
+                        getValueAndUpdate={getValueAndUpdate}
+                      />
+                    )}
 
                     <div
                       className="trigger-btn"
@@ -313,7 +301,13 @@ export default function Dropdown(props: PropTypes) {
                     </div>
                   </div>
                   <div className="option option--nested">
-                    {renderColorPicker("active_dot_color")}
+                    {isColorPicker("active_dot_color") && (
+                      <ColorPicker
+                        color={selection["active_dot_color"]}
+                        objKey={"active_dot_color"}
+                        getValueAndUpdate={getValueAndUpdate}
+                      />
+                    )}
 
                     <div
                       className="trigger-btn"
@@ -345,7 +339,13 @@ export default function Dropdown(props: PropTypes) {
               {isNestedDropdown && (
                 <>
                   <div className="option option--nested">
-                    {renderColorPicker("button_background_color")}
+                    {isColorPicker("button_background_color") && (
+                      <ColorPicker
+                        color={selection["button_background_color"]}
+                        objKey={"button_background_color"}
+                        getValueAndUpdate={getValueAndUpdate}
+                      />
+                    )}
 
                     <div
                       className="trigger-btn"
@@ -364,7 +364,13 @@ export default function Dropdown(props: PropTypes) {
                     </div>
                   </div>
                   <div className="option option--nested">
-                    {renderColorPicker("button_text_color")}
+                    {isColorPicker("button_text_color") && (
+                      <ColorPicker
+                        color={selection["button_text_color"]}
+                        objKey={"button_text_color"}
+                        getValueAndUpdate={getValueAndUpdate}
+                      />
+                    )}
 
                     <div
                       className="trigger-btn"
@@ -410,7 +416,13 @@ export default function Dropdown(props: PropTypes) {
 
           {!!selection["icon_color"] && (
             <div className="option">
-              {renderColorPicker("icon_color")}
+              {isColorPicker("icon_color") && (
+                <ColorPicker
+                  color={selection["icon_color"]}
+                  objKey={"icon_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
 
               <div
                 className="trigger-btn"
@@ -430,7 +442,13 @@ export default function Dropdown(props: PropTypes) {
 
           {!!selection["active_trigger_color"] && (
             <div className="option">
-              {renderColorPicker("active_trigger_color")}
+              {isColorPicker("active_trigger_color") && (
+                <ColorPicker
+                  color={selection["active_trigger_color"]}
+                  objKey={"active_trigger_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
 
               <div
                 className="trigger-btn"
@@ -443,7 +461,7 @@ export default function Dropdown(props: PropTypes) {
                     backgroundColor: selection["active_trigger_color"],
                   }}
                 ></span>
-                <span className="label">Trigger</span>
+                <span className="label">Active</span>
               </div>
             </div>
           )}
