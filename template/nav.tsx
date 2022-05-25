@@ -2,8 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { PropTypes } from "../components/types/template.types";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-import Logo from "../svg/mockup-logo.svg";
+import MockupLogo from "../svg/mockup-logo";
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { SCREEN } from "../components/variables";
 
@@ -26,12 +25,6 @@ const Wrapper = styled.nav<WrapperProps>`
     transform: translateY(-50%);
     @media ${SCREEN.tablet} {
       width: 70px;
-    }
-
-    svg {
-      .mockup-logo_svg__uuid-cfe96933-424d-4891-b691-1153aebf74f2 {
-        fill: ${({ logoColor }) => logoColor};
-      }
     }
   }
 
@@ -126,7 +119,7 @@ export default function Nav(props: PropTypes) {
     >
       <div className="inner-wrapper">
         <div className="logo cursor">
-          <Logo />
+          <MockupLogo color={logo_color} />
         </div>
 
         <ul className="menu-list">

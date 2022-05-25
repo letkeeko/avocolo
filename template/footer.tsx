@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { PropTypes } from "../components/types/template.types";
-import Logo from "../svg/mockup-logo.svg";
+import MockupLogo from "../svg/mockup-logo";
 import { FaFacebookSquare, FaTwitterSquare, FaLinkedin } from "react-icons/fa";
 import { SCREEN, whileInView } from "../components/variables";
 
@@ -43,12 +43,6 @@ const Wrapper = styled.footer<WrapperProps>`
       @media ${SCREEN.tablet} {
         margin: 0 0 36px 0;
         width: 70px;
-      }
-
-      svg {
-        .mockup-logo_svg__uuid-cfe96933-424d-4891-b691-1153aebf74f2 {
-          fill: ${({ logoColor }) => logoColor};
-        }
       }
     }
 
@@ -151,7 +145,7 @@ export default function Footer(props: PropTypes) {
           <div className="flex-row">
             <motion.div className="col col--one" {...whileInView}>
               <div className="logo">
-                <Logo />
+                <MockupLogo color={logo_color} />
               </div>
               <h6 className="subheading">Follow us</h6>
               <span className="icon-social cursor">

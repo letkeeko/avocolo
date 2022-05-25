@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { PropTypes } from "../types/panel.types";
 import Link from "next/link";
-import Logo from "../../svg/avocolo-logo.svg";
+import Logo from "../../svg/logo";
 import Dropdown from "./dropdown";
 import { COLOR, SCREEN } from "../variables";
 import {

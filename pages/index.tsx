@@ -7,9 +7,9 @@ import Text from "../components/text";
 import Button from "../components/button";
 import Image from "next/image";
 import { COLOR, SCREEN } from "../components/variables";
-import Logo from "../svg/avocolo-logo.svg";
-import Boxes from "../svg/boxes.svg";
-import Dots from "../svg/dots.svg";
+import Logo from "../svg/logo";
+import Boxes from "../svg/boxes";
+import Dots from "../svg/dots";
 import { VscGithubAlt } from "react-icons/vsc";
 
 const Wrapper = styled.main`
