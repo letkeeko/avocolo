@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { PropTypes } from "./types/seo.types";
+import { PropTypes } from "./{types}/seo.types";
 
 export default function SEO(props: PropTypes) {
   const { title, description, pathname } = props;

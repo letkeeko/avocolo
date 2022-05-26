@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { PropTypes } from "../components/types/template.types";
+import { PropTypes } from "../components/{types}/template.types";
 import MockupLogo from "../svg/mockup-logo";
 import { FaFacebookSquare, FaTwitterSquare, FaLinkedin } from "react-icons/fa";
 import { SCREEN, whileInView } from "../components/variables";

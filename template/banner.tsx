@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PropTypes } from "../components/types/template.types";
+import { PropTypes } from "../components/{types}/template.types";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Heading from "../components/heading";

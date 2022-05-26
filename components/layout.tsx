@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PropTypes } from "./types/layout.types";
+import { PropTypes } from "./{types}/layout.types";
 import { FONT, COLOR } from "./variables";
 
 const Wrapper = styled.div`

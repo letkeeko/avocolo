@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { PropTypes } from "../components/types/template.types";
+import { PropTypes } from "../components/{types}/template.types";
 import { motion } from "framer-motion";
 import Heading from "../components/heading";
 import { SCREEN, whileInView } from "../components/variables";

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { PropTypes } from "../types/dropdown.types";
+import { PropTypes } from "../{types}/dropdown.types";
 import ColorPicker from "./color-picker";
-import BlankOverlay from "./blank-overlay";
+import BlankOverlay from "../blank-overlay";
 import {
   VscRefresh,
   VscChevronRight,
@@ -468,7 +468,7 @@ export default function Dropdown(props: PropTypes) {
         </div>
       )}
       {!!activeColorPicker && (
-        <BlankOverlay setActiveColorPicker={setActiveColorPicker} />
+        <BlankOverlay triggerFunction={setActiveColorPicker} paramValue="" />
       )}
     </Wrapper>
   );

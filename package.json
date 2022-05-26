@@ -17,7 +17,10 @@
     "react-colorful": "^5.5.1",
     "react-dom": "18.1.0",
     "react-icons": "^4.3.1",
+    "react-scrolllock": "^5.0.1",
+    "react-use-clipboard": "^1.0.8",
     "sharp": "^0.30.4",
+    "slugify": "^1.6.5",
     "styled-components": "^5.3.5",
     "use-debounce": "^8.0.1"
   },

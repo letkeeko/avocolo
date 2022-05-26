@@ -5,6 +5,8 @@ import styled from "styled-components";
 import Layout from "../components/layout";
 import Panel from "../components/panel/panel";
 import TemplateOne from "../template/template";
+import ModalSaveAndShare from "../components/modal/save-and-share";
+import ModalSelectedColors from "../components/modal/selected-colors";
 import { defaultSelections } from "../template/_static_data";
 import { useDebouncedCallback } from "use-debounce";
 import { SCREEN } from "../components/variables";
@@ -28,6 +30,8 @@ const Wrapper = styled.main<WrapperProps>`
 const Editor: NextPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selections, setSelections] = useState({});
+  const [isModalShareOpen, setIsModalShareOpen] = useState(false);
+  const [isModalSelectedColors, setIsModalSelectedColors] = useState(false);
 
   const debounce = useDebouncedCallback((value) => {
     setSelections(value);
@@ -71,11 +75,27 @@ const Editor: NextPage = () => {
           handleChange={handleChange}
           toggleSidebar={toggleSidebar}
           handleReset={handleReset}
+          setIsModalShareOpen={setIsModalShareOpen}
+          setIsModalSelectedColors={setIsModalSelectedColors}
         />
 
         <div className="site-wrapper">
           <TemplateOne selections={selections} />
         </div>
+
+        {isModalSelectedColors && (
+          <ModalSelectedColors
+            setIsModalSelectedColors={setIsModalSelectedColors}
+            selections={selections}
+          />
+        )}
+        {isModalShareOpen && (
+          <ModalSaveAndShare
+            setIsModalShareOpen={setIsModalShareOpen}
+            setIsModalSelectedColors={setIsModalSelectedColors}
+            selections={selections}
+          />
+        )}
       </Wrapper>
     </Layout>
   );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { PropTypes } from "../types/panel.types";
+import { PropTypes } from "../{types}/panel.types";
 import Link from "next/link";
 import Logo from "../../svg/logo";
 import Dropdown from "./dropdown";
@@ -11,6 +11,7 @@ import {
   VscSave,
   VscArrowLeft,
   VscRedo,
+  VscSymbolColor,
   VscHome,
 } from "react-icons/vsc";
 
@@ -130,6 +131,8 @@ export default function Panel(props: PropTypes) {
     toggleSidebar,
     isSidebarOpen,
     handleReset,
+    setIsModalShareOpen,
+    setIsModalSelectedColors,
   } = props;
 
   const handleDropdownClick = (value: string) => {
@@ -227,11 +230,18 @@ export default function Panel(props: PropTypes) {
             />
           </div>
           <div className="other-action">
-            <div className="btn">
+            <div className="btn" onClick={() => setIsModalShareOpen(true)}>
               <span className="icon">
                 <VscSave />
               </span>
               <span className="label">Save and share</span>
+            </div>
+
+            <div className="btn" onClick={() => setIsModalSelectedColors(true)}>
+              <span className="icon">
+                <VscSymbolColor />
+              </span>
+              <span className="label">Current</span>
             </div>
             <div className="btn" onClick={handleReset}>
               <span className="icon">

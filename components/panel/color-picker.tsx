@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { COLOR } from "../variables";
-import { PropTypes } from "../types/color-picker.types";
+import { PropTypes } from "../{types}/color-picker.types";
 import { HexColorPicker, HexColorInput } from "react-colorful";
 
 const Wrapper = styled.div`

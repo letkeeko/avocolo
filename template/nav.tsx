@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { PropTypes } from "../components/types/template.types";
+import { PropTypes } from "../components/{types}/template.types";
 import { AnimatePresence, motion } from "framer-motion";
 import MockupLogo from "../svg/mockup-logo";
 import { IoIosMenu, IoMdClose } from "react-icons/io";

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { SCREEN } from "../components/variables";
-import { PropTypes } from "../components/types/template.types";
+import { PropTypes } from "../components/{types}/template.types";
 import Nav from "./nav";
 import Banner from "./banner";
 import Features from "./features";

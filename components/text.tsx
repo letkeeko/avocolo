@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PropTypes } from "./types/text.types";
+import { PropTypes } from "./{types}/text.types";
 import { SCREEN } from "../components/variables";
 
 const Wrapper = styled.p`
