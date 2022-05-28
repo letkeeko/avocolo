@@ -6,4 +6,5 @@ export type PropTypes = {
   handleDropdownClick: (value: string) => void;
   handleChange: (value: object) => void;
   activeDropdown: string[];
+  variants: any;
 };

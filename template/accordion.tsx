@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { PropTypes } from "../components/types/template.types";
+import { PropTypes } from "../components/{types}/template.types";
 import { motion } from "framer-motion";
 import Heading from "../components/heading";
 import { SCREEN, whileInView } from "../components/variables";
@@ -15,12 +15,12 @@ type WrapperProps = {
 
 const Wrapper = styled.section<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
-  padding: 70px 0 70px 0;
+  padding: 55px 0 40px 0;
   @media ${SCREEN.tablet} {
-    padding: 110px 0 110px 0;
+    padding: 110px 0;
   }
   @media ${SCREEN.laptop} {
-    padding: 130px 0 130px 0;
+    padding: 130px 0;
   }
 
   .flex-row {
@@ -145,6 +145,7 @@ export default function Accordion(props: PropTypes) {
   const [currentActives, setCurrentActives] = useState<number[]>([0]);
 
   const {
+    featured_image,
     container_background_color,
     container_text_color,
     active_trigger_color,
@@ -173,11 +174,12 @@ export default function Accordion(props: PropTypes) {
       backgroundColor={container_background_color}
       textColor={container_text_color}
       activeTriggerColor={active_trigger_color}
+      id="accordion"
     >
       <div className="inner-wrapper">
         <div className="flex-row">
           <motion.div className="col col--one" {...whileInView}>
-            <Heading as="h2">Feugiat vestibulum enim sed nec</Heading>
+            <Heading as="h2">Pudding powder sugar donut tart</Heading>
             <div>
               <ul className="accordion-list">
                 {accordionList.map((item, index) => (
@@ -206,7 +208,7 @@ export default function Accordion(props: PropTypes) {
             </div>
           </motion.div>
           <motion.div className="col col--two" {...whileInView}>
-            <img src="https://picsum.photos/900/568" alt="Amazing asset" />
+            <img src={featured_image} alt="Amazing asset" />
           </motion.div>
         </div>
       </div>

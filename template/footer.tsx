@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { PropTypes } from "../components/types/template.types";
-import Logo from "../svg/mockup-logo.svg";
+import { PropTypes } from "../components/{types}/template.types";
+import MockupLogo from "../svg/mockup-logo";
 import { FaFacebookSquare, FaTwitterSquare, FaLinkedin } from "react-icons/fa";
 import { SCREEN, whileInView } from "../components/variables";
 
@@ -66,6 +66,7 @@ const Wrapper = styled.footer<WrapperProps>`
     .icon-social {
       font-size: 1.6rem;
       margin: 0 20px 0 0;
+      color: ${({ iconColor }) => iconColor};
     }
 
     .col {
@@ -95,6 +96,10 @@ const Wrapper = styled.footer<WrapperProps>`
     padding: 30px 0 20px 0;
     @media ${SCREEN.tablet} {
       padding: 80px 0 40px 0;
+    }
+
+    a {
+      color: ${({ textColor }) => textColor};
     }
 
     p {
@@ -133,13 +138,14 @@ export default function Footer(props: PropTypes) {
       textColor={container_text_color}
       logoColor={logo_color}
       iconColor={icon_color}
+      id="footer"
     >
       <div className="top">
         <div className="inner-wrapper">
           <div className="flex-row">
             <motion.div className="col col--one" {...whileInView}>
               <div className="logo">
-                <Logo />
+                <MockupLogo color={logo_color} />
               </div>
               <h6 className="subheading">Follow us</h6>
               <span className="icon-social cursor">
@@ -154,9 +160,9 @@ export default function Footer(props: PropTypes) {
             </motion.div>
             <motion.div className="col col--two" {...whileInView}>
               <h6 className="subheading">Get in touch</h6>
-              <p className="link cursor">info@thatcompany.com</p>
-              <p className="link cursor">1234 567 8910</p>
-              <p className="link cursor">
+              <p className="link default-cursor">info@thatcompany.com</p>
+              <p className="link default-cursor">1234 567 8910</p>
+              <p className="link default-cursor">
                 20 Yeah Man Road,
                 <br />
                 That State 4321, Datcountry
@@ -164,10 +170,10 @@ export default function Footer(props: PropTypes) {
             </motion.div>
             <motion.div className="col col--three" {...whileInView}>
               <h6 className="subheading">Our services</h6>
-              <p className="link cursor">Baking muffin</p>
-              <p className="link cursor">Singing and dancing</p>
-              <p className="link cursor">Driving safe</p>
-              <p className="link cursor">Christmas caroling</p>
+              <p className="link default-cursor">Baking muffin</p>
+              <p className="link default-cursor">Singing and dancing</p>
+              <p className="link default-cursor">Driving safe</p>
+              <p className="link default-cursor">Christmas caroling</p>
             </motion.div>
           </div>
         </div>
@@ -176,9 +182,18 @@ export default function Footer(props: PropTypes) {
             <motion.div className="flex-row flex-row--center" {...whileInView}>
               <p>&copy; Company 2022</p>
               <span>|</span>
-              <p className="cursor">Terms and conditions</p>
+              <p>
+                Images from{" "}
+                <a
+                  href="https://unsplash.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Unsplash
+                </a>
+              </p>
               <span>|</span>
-              <p className="cursor">Privacy policy</p>
+              <p className="default-cursor">Terms and Privacy</p>
             </motion.div>
           </div>
         </div>

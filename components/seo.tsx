@@ -1,8 +1,8 @@
 import Head from "next/head";
-import { PropTypes } from "./types/seo.types";
+import { PropTypes } from "./{types}/seo.types";
 
 export default function SEO(props: PropTypes) {
-  const { title, description, pathname } = props;
+  const { title, description, pathname, isNoIndex } = props;
 
   return (
     <Head>
@@ -25,7 +25,7 @@ export default function SEO(props: PropTypes) {
       <meta property="twitter:description" content={description} />
       <meta property="og:url" content={`https://www.avocolo.com${pathname}`} />
       <link rel="canonical" href={`https://www.avocolo.com${pathname}`} />
-
+      {isNoIndex && <meta name="robots" content="index,follow" />}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

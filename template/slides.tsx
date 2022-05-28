@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { PropTypes } from "../components/types/template.types";
+import { PropTypes } from "../components/{types}/template.types";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import { SCREEN, whileInView } from "../components/variables";
@@ -18,12 +19,12 @@ type WrapperProps = {
 const Wrapper = styled.section<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ textColor }) => textColor};
-  padding: 70px 0 70px 0;
+  padding: 55px 0;
   @media ${SCREEN.tablet} {
-    padding: 110px 0 110px 0;
+    padding: 110px 0;
   }
   @media ${SCREEN.laptop} {
-    padding: 130px 0 130px 0;
+    padding: 130px 0;
   }
 
   .description {
@@ -39,13 +40,13 @@ const Wrapper = styled.section<WrapperProps>`
   }
 
   .slide-list {
-    min-height: 356px;
+    min-height: 390px;
     position: relative;
     @media ${SCREEN.tablet} {
-      min-height: 300px;
+      min-height: 320px;
     }
     @media ${SCREEN.laptop} {
-      min-height: 250px;
+      min-height: 260px;
     }
 
     &__each {
@@ -65,17 +66,18 @@ const Wrapper = styled.section<WrapperProps>`
 
         .col {
           &--one {
-            img {
-              display: block;
-              width: 100px;
-              border-radius: 50%;
-              margin: 0 auto 20px auto;
-              @media ${SCREEN.tablet} {
-                margin: 0;
-              }
-              @media ${SCREEN.laptop} {
-                width: 120px;
-              }
+            border-radius: 50%;
+            overflow: hidden;
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px auto;
+            @media ${SCREEN.tablet} {
+              margin: 0;
+            }
+            @media ${SCREEN.laptop} {
+              width: 120px;
+              height: 120px;
             }
           }
 
@@ -88,16 +90,17 @@ const Wrapper = styled.section<WrapperProps>`
             }
             @media ${SCREEN.laptop} {
               max-width: 640px;
-              padding: 0 0 0 50px;
+              padding: 0 0 0 42px;
             }
 
             .subdescription {
               p {
                 font-weight: 400;
-                font-size: 0.825rem;
                 margin: 0 0 15px 0;
+                font-size: 1rem;
+                font-style: italic;
                 @media ${SCREEN.tablet} {
-                  font-size: 0.975rem;
+                  font-size: 1.2rem;
                 }
               }
             }
@@ -149,6 +152,7 @@ export default function Slides(props: PropTypes) {
   const [currentActive, setCurrentActive] = useState(0);
 
   const {
+    featured_image,
     container_background_color,
     container_text_color,
     dots_color,
@@ -169,16 +173,17 @@ export default function Slides(props: PropTypes) {
       dotsColor={dots_color}
       activeDotColor={active_dot_color}
       quoteColor={quote_color}
+      id="slides"
     >
       <div className="inner-wrapper">
         <motion.div className="description" {...whileInView}>
           <Heading className="mb" as="h2">
-            Lorem ipsum dolor sit amet
+            Candy canes sesame lemon drops
           </Heading>
           <Text>
-            Maecenas fermentum imperdiet velit, sed condimentum justo gravida
-            eget. Sed in convallis nisi, ac bibendum neque. In varius, mauris
-            quis ultricies dictum, leo sem varius quam.
+            Sweet cake apple pie gummi bears chocolate. Candy canes tart ice
+            cream bear claw lollipop sweet roll. Liquorice gingerbread macaroon
+            carrot cake biscuit pastry.
           </Text>
         </motion.div>
 
@@ -194,7 +199,14 @@ export default function Slides(props: PropTypes) {
                     animate="show"
                   >
                     <motion.div className="col col--one" variants={animateItem}>
-                      <img src={item.image} alt="Amazing portrait" />
+                      <Image
+                        src={featured_image}
+                        alt="Amazing portrait"
+                        width={300}
+                        height={300}
+                        placeholder="blur"
+                        blurDataURL={featured_image}
+                      />
                     </motion.div>
                     <div className="col col--two">
                       <motion.div

@@ -1,22 +1,26 @@
+import { useState } from "react";
 import styled from "styled-components";
-import { PropTypes } from "../types/dropdown.types";
-import Button from "../button";
+import { motion } from "framer-motion";
+import { PropTypes } from "../{types}/dropdown.types";
+import ColorPicker from "./color-picker";
+import BlankOverlay from "../blank-overlay";
 import {
   VscRefresh,
   VscChevronRight,
   VscCheck,
   VscChromeMinimize,
 } from "react-icons/vsc";
+import { COLOR } from "../variables";
+import useImage from "../../hooks/use-image";
 
-import { SCREEN } from "../variables";
-
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   .heading-trigger {
+    cursor: pointer;
     padding: 12px 24px;
     display: flex;
     align-items: center;
-    cursor: pointer;
     border-top: 1px solid #e8e8e8;
+    color: ${COLOR.black};
 
     &--active {
       background-color: #e8e8e8;
@@ -37,59 +41,77 @@ const Wrapper = styled.div`
   }
 
   .color {
-    background: blue;
     min-width: 12px;
     min-height: 12px;
     display: inline-block;
     margin: 0 6px 0 0;
     border-radius: 3px;
-    border: 1px solid rgba(0, 0, 0, 0.175);
+    border: 1px solid rgba(0, 0, 0, 0.15);
   }
 
   .list-option {
+    padding: 4px 0;
   }
 
   .option {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
     padding: 9px 24px;
+    position: relative;
 
     &--nested {
       padding: 9px 36px;
     }
 
     &--trigger {
+      cursor: pointer;
     }
 
     &--active {
       background-color: #f4f4f4;
+
+      .icon {
+        transform: rotate(90deg);
+        margin: 0 8px -2px 0;
+      }
+    }
+
+    .trigger-btn {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
     }
   }
 `;
 
 export default function Dropdown(props: PropTypes) {
+  const [activeColorPicker, setActiveColorPicker] = useState("");
+
+  const [isLoading, fetchNewImage] = useImage();
+
   const {
     label,
     selections,
     handleDropdownClick,
     handleChange,
     activeDropdown,
+    variants,
   } = props;
 
   const objKey = label.toLowerCase();
 
   const selection = selections[objKey] || {};
 
-  const getValueAndUpdate = (key: string, val: string) => {
-    console.log(objKey);
-    console.log(key, val);
+  const getValueAndUpdate = (key: string, val: string | boolean) => {
+    // modify current object
+    selections[objKey] = { ...selection, [key]: val };
+
+    handleChange({ ...selections });
   };
 
   const isDropdownOpen = activeDropdown.includes(objKey);
 
   const isNestedDropdown = activeDropdown.includes(objKey + "-nested");
 
+  // *** color handler
   const getActiveClassName = () => {
     if (isDropdownOpen) return "heading-trigger heading-trigger--active";
 
@@ -104,61 +126,139 @@ export default function Dropdown(props: PropTypes) {
     return "option option--nested option--trigger";
   };
 
+  const handleActiveColorPicker = (val: string) => {
+    if (activeColorPicker === val) {
+      setActiveColorPicker("");
+
+      return;
+    }
+
+    setActiveColorPicker(val);
+  };
+
+  const isColorPicker = (val: string) => {
+    return activeColorPicker === val;
+  };
+
+  const handleNewImage = async () => {
+    const result = await fetchNewImage(objKey === "slides" && "square");
+
+    if (result) {
+      getValueAndUpdate("featured_image", result);
+    }
+  };
+  // end color handler
+
   return (
-    <Wrapper>
-      <div
+    <Wrapper variants={variants}>
+      <a
         className={getActiveClassName()}
         onClick={() => handleDropdownClick(objKey)}
+        href={"#" + objKey}
       >
         <span className="icon">
           <VscChevronRight />
         </span>
         <span className="label">{label}</span>
-      </div>
+      </a>
       {isDropdownOpen && (
         <div className="list-option">
           {!!selection["featured_image"] && (
             <div className="option">
-              <span className="icon">
-                <VscRefresh />
-              </span>
-              <span className="label">Image</span>
+              <div
+                className="trigger-btn"
+                role="button"
+                title="Get a new random image"
+                onClick={handleNewImage}
+                style={{ pointerEvents: isLoading ? "none" : "all" }}
+              >
+                <span className="icon">
+                  <VscRefresh />
+                </span>
+                <span className="label">
+                  {isLoading ? "Loading..." : "Image"}
+                </span>
+              </div>
             </div>
           )}
 
           {!!selection["container_background_color"] && (
-            <div
-              className="option"
-              onClick={() =>
-                getValueAndUpdate("container_background_color", "gold")
-              }
-            >
-              <span
-                className="color"
-                style={{
-                  backgroundColor: selection["container_background_color"],
-                }}
-              ></span>
-              <span className="label">Background</span>
+            <div className="option">
+              {isColorPicker("container_background_color") && (
+                <ColorPicker
+                  color={selection["container_background_color"]}
+                  objKey={"container_background_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
+
+              <div
+                className="trigger-btn"
+                role="button"
+                onClick={() =>
+                  handleActiveColorPicker("container_background_color")
+                }
+              >
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["container_background_color"],
+                  }}
+                ></span>
+                <span className="label">Background</span>
+              </div>
             </div>
           )}
 
           {!!selection["container_text_color"] && (
             <div className="option">
-              <span
-                className="color"
-                style={{
-                  backgroundColor: selection["container_text_color"],
-                }}
-              ></span>
-              <span className="label">Text</span>
+              {isColorPicker("container_text_color") && (
+                <ColorPicker
+                  color={selection["container_text_color"]}
+                  objKey={"container_text_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
+
+              <div
+                className="trigger-btn"
+                role="button"
+                onClick={() => handleActiveColorPicker("container_text_color")}
+              >
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["container_text_color"],
+                  }}
+                ></span>
+                <span className="label">Text</span>
+              </div>
             </div>
           )}
 
           {!!selection["logo_color"] && (
             <div className="option">
-              <span className="color"></span>
-              <span className="label">Logo</span>
+              {isColorPicker("logo_color") && (
+                <ColorPicker
+                  color={selection["logo_color"]}
+                  objKey={"logo_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
+
+              <div
+                className="trigger-btn"
+                role="button"
+                onClick={() => handleActiveColorPicker("logo_color")}
+              >
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["logo_color"],
+                  }}
+                ></span>
+                <span className="label">Logo</span>
+              </div>
             </div>
           )}
 
@@ -176,12 +276,52 @@ export default function Dropdown(props: PropTypes) {
               {isNestedDropdown && (
                 <>
                   <div className="option option--nested">
-                    <span className="color"></span>
-                    <span className="label">Inactive</span>
+                    {isColorPicker("dots_color") && (
+                      <ColorPicker
+                        color={selection["dots_color"]}
+                        objKey={"dots_color"}
+                        getValueAndUpdate={getValueAndUpdate}
+                      />
+                    )}
+
+                    <div
+                      className="trigger-btn"
+                      role="button"
+                      onClick={() => handleActiveColorPicker("dots_color")}
+                    >
+                      <span
+                        className="color"
+                        style={{
+                          backgroundColor: selection["dots_color"],
+                        }}
+                      ></span>
+                      <span className="label">Inactive</span>
+                    </div>
                   </div>
                   <div className="option option--nested">
-                    <span className="color"></span>
-                    <span className="label">Active</span>
+                    {isColorPicker("active_dot_color") && (
+                      <ColorPicker
+                        color={selection["active_dot_color"]}
+                        objKey={"active_dot_color"}
+                        getValueAndUpdate={getValueAndUpdate}
+                      />
+                    )}
+
+                    <div
+                      className="trigger-btn"
+                      role="button"
+                      onClick={() =>
+                        handleActiveColorPicker("active_dot_color")
+                      }
+                    >
+                      <span
+                        className="color"
+                        style={{
+                          backgroundColor: selection["active_dot_color"],
+                        }}
+                      ></span>
+                      <span className="label">Active</span>
+                    </div>
                   </div>
                 </>
               )}
@@ -202,18 +342,75 @@ export default function Dropdown(props: PropTypes) {
               {isNestedDropdown && (
                 <>
                   <div className="option option--nested">
-                    <span className="color"></span>
-                    <span className="label">Background</span>
+                    {isColorPicker("button_background_color") && (
+                      <ColorPicker
+                        color={selection["button_background_color"]}
+                        objKey={"button_background_color"}
+                        getValueAndUpdate={getValueAndUpdate}
+                      />
+                    )}
+
+                    <div
+                      className="trigger-btn"
+                      role="button"
+                      onClick={() =>
+                        handleActiveColorPicker("button_background_color")
+                      }
+                    >
+                      <span
+                        className="color"
+                        style={{
+                          backgroundColor: selection["button_background_color"],
+                        }}
+                      ></span>
+                      <span className="label">Background</span>
+                    </div>
                   </div>
                   <div className="option option--nested">
-                    <span className="color"></span>
-                    <span className="label">Text</span>
+                    {isColorPicker("button_text_color") && (
+                      <ColorPicker
+                        color={selection["button_text_color"]}
+                        objKey={"button_text_color"}
+                        getValueAndUpdate={getValueAndUpdate}
+                      />
+                    )}
+
+                    <div
+                      className="trigger-btn"
+                      role="button"
+                      onClick={() =>
+                        handleActiveColorPicker("button_text_color")
+                      }
+                    >
+                      <span
+                        className="color"
+                        style={{
+                          backgroundColor: selection["button_text_color"],
+                        }}
+                      ></span>
+                      <span className="label">Text</span>
+                    </div>
                   </div>
                   <div className="option option--nested">
-                    <span className="icon">
-                      <VscCheck />
-                    </span>
-                    <span className="label">Fill</span>
+                    <div
+                      className="trigger-btn"
+                      role="button"
+                      onClick={() =>
+                        getValueAndUpdate(
+                          "button_is_fill",
+                          !selection["button_is_fill"]
+                        )
+                      }
+                    >
+                      <span className="icon">
+                        {selection["button_is_fill"] ? (
+                          <VscCheck />
+                        ) : (
+                          <VscChromeMinimize />
+                        )}
+                      </span>
+                      <span className="label">Fill</span>
+                    </div>
                   </div>
                 </>
               )}
@@ -222,18 +419,59 @@ export default function Dropdown(props: PropTypes) {
 
           {!!selection["icon_color"] && (
             <div className="option">
-              <span className="color"></span>
-              <span className="label">Icon</span>
+              {isColorPicker("icon_color") && (
+                <ColorPicker
+                  color={selection["icon_color"]}
+                  objKey={"icon_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
+
+              <div
+                className="trigger-btn"
+                role="button"
+                onClick={() => handleActiveColorPicker("icon_color")}
+              >
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["icon_color"],
+                  }}
+                ></span>
+                <span className="label">Icon</span>
+              </div>
             </div>
           )}
 
           {!!selection["active_trigger_color"] && (
             <div className="option">
-              <span className="color"></span>
-              <span className="label">Trigger</span>
+              {isColorPicker("active_trigger_color") && (
+                <ColorPicker
+                  color={selection["active_trigger_color"]}
+                  objKey={"active_trigger_color"}
+                  getValueAndUpdate={getValueAndUpdate}
+                />
+              )}
+
+              <div
+                className="trigger-btn"
+                role="button"
+                onClick={() => handleActiveColorPicker("active_trigger_color")}
+              >
+                <span
+                  className="color"
+                  style={{
+                    backgroundColor: selection["active_trigger_color"],
+                  }}
+                ></span>
+                <span className="label">Active</span>
+              </div>
             </div>
           )}
         </div>
+      )}
+      {!!activeColorPicker && (
+        <BlankOverlay triggerFunction={setActiveColorPicker} paramValue="" />
       )}
     </Wrapper>
   );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PropTypes } from "./types/heading.types";
+import { PropTypes } from "./{types}/heading.types";
 import { SCREEN } from "../components/variables";
 
 const Wrapper = styled.div`
@@ -24,6 +24,18 @@ const Wrapper = styled.div`
       font-size: 2.2rem;
     }
   }
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.5;
+    @media ${SCREEN.tablet} {
+      font-size: 1.4rem;
+    }
+    @media ${SCREEN.desktop} {
+      font-size: 1.5rem;
+    }
+  }
 `;
 
 export default function Button(props: PropTypes) {
@@ -34,6 +46,8 @@ export default function Button(props: PropTypes) {
       {as === "h1" && <h1>{children}</h1>}
 
       {as === "h2" && <h2>{children}</h2>}
+
+      {as === "h3" && <h3>{children}</h3>}
     </Wrapper>
   );
 }

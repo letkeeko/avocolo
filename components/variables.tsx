@@ -21,3 +21,20 @@ export const whileInView = {
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
 };
+
+// framer motion variants props
+export const animateContainer = {
+  hidden: { opacity: 0, y: 70 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+export const animateItem = {
+  hidden: { opacity: 0, y: 35 },
+  show: { opacity: 1, y: 0 },
+};

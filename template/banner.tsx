@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { PropTypes } from "../components/types/template.types";
+import { PropTypes } from "../components/{types}/template.types";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import Button from "../components/button";
@@ -13,12 +14,12 @@ type WrapperProps = {
 
 const Wrapper = styled.header<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
-  padding: 110px 0 80px 0;
+  padding: 40px 0 60px 0;
   @media ${SCREEN.tablet} {
     padding: 160px 0 130px 0;
   }
   @media ${SCREEN.laptop} {
-    padding: 240px 0 160px 0;
+    padding: 160px 0;
   }
 
   .flex-row {
@@ -65,6 +66,7 @@ const Wrapper = styled.header<WrapperProps>`
 
 export default function Banner(props: PropTypes) {
   const {
+    featured_image,
     container_background_color,
     container_text_color,
     button_background_color,
@@ -76,17 +78,18 @@ export default function Banner(props: PropTypes) {
     <Wrapper
       backgroundColor={container_background_color}
       textColor={container_text_color}
+      id="banner"
     >
       <div className="inner-wrapper">
         <div className="flex-row">
           <motion.div className="col col--one" {...whileInView}>
             <Heading as="h1" className="mb">
-              Lorem ipsum dolor sit amet
+              Cheesecake candy canes marshmallow sweet
             </Heading>
             <Text className="mb-med">
-              Maecenas fermentum imperdiet velit, sed condimentum justo gravida
-              eget. Sed in convallis nisi, ac bibendum neque. In varius, mauris
-              quis ultricies dictum, leo sem varius quam, et pellentesque.
+              Pastry cupcake donut chocolate pudding pie pastry gummies jelly.
+              Muffin liquorice biscuit sesame snaps gingerbread halvah. Danish
+              jelly wafer oat cake jujubes carrot cake brownie pastry.
             </Text>
             <Button
               customStyles={{
@@ -100,7 +103,14 @@ export default function Banner(props: PropTypes) {
             </Button>
           </motion.div>
           <motion.div className="col col--two" {...whileInView}>
-            <img src="https://picsum.photos/900/568" alt="Amazing asset" />
+            <Image
+              src={featured_image || "/og-avocolo.png"}
+              alt="Amazing asset"
+              width={900}
+              height={568}
+              placeholder="blur"
+              blurDataURL={featured_image || "/og-avocolo.png"}
+            />
           </motion.div>
         </div>
       </div>

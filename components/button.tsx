@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { PropTypes } from "./types/button.types";
+import { PropTypes } from "./{types}/button.types";
 import Link from "next/link";
 import { COLOR, SCREEN } from "./variables";
 
@@ -69,7 +69,7 @@ const Wrapper = styled.div<WrapperProps>`
 `;
 
 export default function Button(props: PropTypes) {
-  const { children, href, customStyles } = props;
+  const { children, href, disabled, customStyles } = props;
 
   // avocolo's theme brand
   const defaultStyles = {
@@ -112,7 +112,7 @@ export default function Button(props: PropTypes) {
       {!!href ? (
         <Link href={href}>{children}</Link>
       ) : (
-        <button>{children}</button>
+        <button disabled={disabled}>{children}</button>
       )}
     </Wrapper>
   );

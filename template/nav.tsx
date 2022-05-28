@@ -1,9 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { PropTypes } from "../components/types/template.types";
+import { PropTypes } from "../components/{types}/template.types";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-import Logo from "../svg/mockup-logo.svg";
+import MockupLogo from "../svg/mockup-logo";
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { SCREEN } from "../components/variables";
 
@@ -15,8 +14,7 @@ type WrapperProps = {
 
 const Wrapper = styled.nav<WrapperProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
-  position: fixed;
-  width: 100%;
+  position: relative;
   box-shadow: 0 6px 10px -8px rgba(0, 0, 0, 0.2);
   z-index: 2;
 
@@ -27,12 +25,6 @@ const Wrapper = styled.nav<WrapperProps>`
     transform: translateY(-50%);
     @media ${SCREEN.tablet} {
       width: 70px;
-    }
-
-    svg {
-      .mockup-logo_svg__uuid-cfe96933-424d-4891-b691-1153aebf74f2 {
-        fill: ${({ logoColor }) => logoColor};
-      }
     }
   }
 
@@ -86,7 +78,7 @@ const Wrapper = styled.nav<WrapperProps>`
       display: none;
     }
 
-    a {
+    p {
       color: ${({ textColor }) => textColor};
       display: block;
       text-align: center;
@@ -123,25 +115,25 @@ export default function Nav(props: PropTypes) {
       backgroundColor={container_background_color}
       logoColor={logo_color}
       textColor={container_text_color}
-      id="nav"
+      id="navigation"
     >
       <div className="inner-wrapper">
         <div className="logo cursor">
-          <Logo />
+          <MockupLogo color={logo_color} />
         </div>
 
         <ul className="menu-list">
           <li className="menu-list__each">
-            <span className="cursor">Home</span>
+            <span className="default-cursor">Home</span>
           </li>
           <li className="menu-list__each">
-            <span className="cursor">About</span>
+            <span className="default-cursor">About</span>
           </li>
           <li className="menu-list__each">
-            <span className="cursor">Services</span>
+            <span className="default-cursor">Services</span>
           </li>
           <li className="menu-list__each">
-            <span className="cursor">Contact</span>
+            <span className="default-cursor">Contact</span>
           </li>
           <li className="menu-list__each menu-list__each--icon-menu">
             <div role="button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -160,18 +152,18 @@ export default function Nav(props: PropTypes) {
             animate="show"
             exit="hidden"
           >
-            <Link href="/editor">
-              <motion.a variants={animateItem}>Home</motion.a>
-            </Link>
-            <Link href="/editor">
-              <motion.a variants={animateItem}>About</motion.a>
-            </Link>
-            <Link href="/editor">
-              <motion.a variants={animateItem}>Services</motion.a>
-            </Link>
-            <Link href="/editor">
-              <motion.a variants={animateItem}>Contact</motion.a>
-            </Link>
+            <motion.p className="default-cursor" variants={animateItem}>
+              Home
+            </motion.p>
+            <motion.p className="default-cursor" variants={animateItem}>
+              About
+            </motion.p>
+            <motion.p className="default-cursor" variants={animateItem}>
+              Services
+            </motion.p>
+            <motion.p className="default-cursor" variants={animateItem}>
+              Contact
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,4 +1,4 @@
 export type PropTypes = {
+  setIsModalColorsOpen: (value: boolean) => void;
   selections: object;
-  handleChange: (value: object) => void;
 };
