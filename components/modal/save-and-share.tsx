@@ -195,9 +195,12 @@ export default function SaveAndShare(props: PropTypes) {
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setSubmitted] = useState(false);
   const [uniquePathname, setUniquePathname] = useState("");
-  const [isCopied, setCopied] = useClipboard(`avocolo.com/${uniquePathname}`, {
-    successDuration: 500,
-  });
+  const [isCopied, setCopied] = useClipboard(
+    `avocolo.com/v?${uniquePathname}`,
+    {
+      successDuration: 500,
+    }
+  );
 
   const {
     setIsModalShareOpen,
