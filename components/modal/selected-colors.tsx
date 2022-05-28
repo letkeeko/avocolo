@@ -1,11 +1,16 @@
 import styled from "styled-components";
+import { AnimatePresence, motion } from "framer-motion";
+import ScrollLock from "react-scrolllock";
 import useClipboard from "react-use-clipboard";
 import { PropTypes } from "../{types}/selected-colors.types";
-import { COLOR, SCREEN } from "../../components/variables";
+import {
+  COLOR,
+  SCREEN,
+  animateContainer,
+  animateItem,
+} from "../../components/variables";
 import BlankOverlay from "../blank-overlay";
-import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
-import ScrollLock from "react-scrolllock";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -127,14 +132,19 @@ const getUniqueHexColors = (obj: { [key: string]: any }): string[] => {
 };
 
 export default function SelectedColors(props: PropTypes) {
-  const { setIsModalSelectedColors, selections } = props;
+  const { setIsModalColorsOpen, selections } = props;
 
   const colors = getUniqueHexColors(selections);
 
   return (
     <Wrapper role="dialog">
       <ScrollLock>
-        <div className="inner-container">
+        <motion.div
+          className="inner-container"
+          variants={animateContainer}
+          initial="hidden"
+          animate="show"
+        >
           <ul className="color-list">
             {colors.map((color, index) => (
               <Color color={color} key={index} />
@@ -143,17 +153,13 @@ export default function SelectedColors(props: PropTypes) {
           <div
             className="close-btn"
             role="button"
-            onClick={() => setIsModalSelectedColors(false)}
+            onClick={() => setIsModalColorsOpen(false)}
           >
             <IoMdClose />
           </div>
-        </div>
+        </motion.div>
       </ScrollLock>
-      <BlankOverlay
-        backgroundColor="rgba(255,255,255,0.7)"
-        paramValue={false}
-        triggerFunction={setIsModalSelectedColors}
-      />
+      <BlankOverlay backgroundColor="rgba(255,255,255,0.7)" />
     </Wrapper>
   );
 }
@@ -174,6 +180,7 @@ const Color = (props: ColorTypes) => {
       className="color-list__each"
       onClick={setCopied}
       whileTap={{ scale: 0.98 }}
+      variants={animateItem}
       style={{
         backgroundColor: color,
       }}

@@ -11,7 +11,6 @@ import { defaultSelections } from "../template/_static_data";
 import { useDebouncedCallback } from "use-debounce";
 import { SCREEN } from "../components/variables";
 import saveToLocalStorage from "../utils/save-to-localstorage";
-import scrollToTop from "../utils/scroll-to-top";
 
 type WrapperProps = {
   isSidebarOpen: boolean;
@@ -31,7 +30,7 @@ const Editor: NextPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selections, setSelections] = useState({});
   const [isModalShareOpen, setIsModalShareOpen] = useState(false);
-  const [isModalSelectedColors, setIsModalSelectedColors] = useState(false);
+  const [isModalColorsOpen, setIsModalColorsOpen] = useState(false);
 
   const debounce = useDebouncedCallback((value) => {
     setSelections(value);
@@ -57,7 +56,6 @@ const Editor: NextPage = () => {
   const handleReset = () => {
     localStorage.clear();
     window.location.href = "editor";
-    scrollToTop();
   };
 
   return (
@@ -75,23 +73,22 @@ const Editor: NextPage = () => {
           toggleSidebar={toggleSidebar}
           handleReset={handleReset}
           setIsModalShareOpen={setIsModalShareOpen}
-          setIsModalSelectedColors={setIsModalSelectedColors}
+          setIsModalColorsOpen={setIsModalColorsOpen}
         />
-
         <div className="site-wrapper">
           <TemplateOne selections={selections} />
         </div>
-
-        {isModalSelectedColors && (
+        {isModalColorsOpen && (
           <ModalSelectedColors
-            setIsModalSelectedColors={setIsModalSelectedColors}
+            setIsModalColorsOpen={setIsModalColorsOpen}
             selections={selections}
           />
         )}
         {isModalShareOpen && (
           <ModalSaveAndShare
             setIsModalShareOpen={setIsModalShareOpen}
-            setIsModalSelectedColors={setIsModalSelectedColors}
+            setIsModalColorsOpen={setIsModalColorsOpen}
+            isModalColorsOpen={isModalColorsOpen}
             selections={selections}
           />
         )}

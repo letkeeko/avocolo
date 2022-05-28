@@ -24,7 +24,7 @@ export default function BlankOverlay(props: PropTypes) {
     <Wrapper
       id="blank-overlay"
       role="presentation"
-      onClick={() => triggerFunction(paramValue)}
+      onClick={() => triggerFunction && triggerFunction(paramValue)}
       backgroundColor={backgroundColor}
     ></Wrapper>
   );

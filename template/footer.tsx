@@ -160,9 +160,9 @@ export default function Footer(props: PropTypes) {
             </motion.div>
             <motion.div className="col col--two" {...whileInView}>
               <h6 className="subheading">Get in touch</h6>
-              <p className="link cursor">info@thatcompany.com</p>
-              <p className="link cursor">1234 567 8910</p>
-              <p className="link cursor">
+              <p className="link default-cursor">info@thatcompany.com</p>
+              <p className="link default-cursor">1234 567 8910</p>
+              <p className="link default-cursor">
                 20 Yeah Man Road,
                 <br />
                 That State 4321, Datcountry
@@ -170,10 +170,10 @@ export default function Footer(props: PropTypes) {
             </motion.div>
             <motion.div className="col col--three" {...whileInView}>
               <h6 className="subheading">Our services</h6>
-              <p className="link cursor">Baking muffin</p>
-              <p className="link cursor">Singing and dancing</p>
-              <p className="link cursor">Driving safe</p>
-              <p className="link cursor">Christmas caroling</p>
+              <p className="link default-cursor">Baking muffin</p>
+              <p className="link default-cursor">Singing and dancing</p>
+              <p className="link default-cursor">Driving safe</p>
+              <p className="link default-cursor">Christmas caroling</p>
             </motion.div>
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function Footer(props: PropTypes) {
                 </a>
               </p>
               <span>|</span>
-              <p className="cursor">Terms and Privacy</p>
+              <p className="default-cursor">Terms and Privacy</p>
             </motion.div>
           </div>
         </div>

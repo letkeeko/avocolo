@@ -124,16 +124,16 @@ export default function Nav(props: PropTypes) {
 
         <ul className="menu-list">
           <li className="menu-list__each">
-            <span className="cursor">Home</span>
+            <span className="default-cursor">Home</span>
           </li>
           <li className="menu-list__each">
-            <span className="cursor">About</span>
+            <span className="default-cursor">About</span>
           </li>
           <li className="menu-list__each">
-            <span className="cursor">Services</span>
+            <span className="default-cursor">Services</span>
           </li>
           <li className="menu-list__each">
-            <span className="cursor">Contact</span>
+            <span className="default-cursor">Contact</span>
           </li>
           <li className="menu-list__each menu-list__each--icon-menu">
             <div role="button" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -152,16 +152,16 @@ export default function Nav(props: PropTypes) {
             animate="show"
             exit="hidden"
           >
-            <motion.p className="cursor" variants={animateItem}>
+            <motion.p className="default-cursor" variants={animateItem}>
               Home
             </motion.p>
-            <motion.p className="cursor" variants={animateItem}>
+            <motion.p className="default-cursor" variants={animateItem}>
               About
             </motion.p>
-            <motion.p className="cursor" variants={animateItem}>
+            <motion.p className="default-cursor" variants={animateItem}>
               Services
             </motion.p>
-            <motion.p className="cursor" variants={animateItem}>
+            <motion.p className="default-cursor" variants={animateItem}>
               Contact
             </motion.p>
           </motion.div>

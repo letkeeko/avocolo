@@ -1,12 +1,18 @@
 import type { NextPage } from "next";
 import SEO from "../components/seo";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import Layout from "../components/layout";
 import Heading from "../components/heading";
 import Text from "../components/text";
 import Button from "../components/button";
 import Image from "next/image";
-import { COLOR, SCREEN } from "../components/variables";
+import {
+  COLOR,
+  SCREEN,
+  animateContainer,
+  animateItem,
+} from "../components/variables";
 import Logo from "../svg/logo";
 import Boxes from "../svg/boxes";
 import Dots from "../svg/dots";
@@ -47,9 +53,9 @@ const Wrapper = styled.main`
     }
 
     .txt-wrap {
-      margin: 9px 0 0 0;
+      margin: 12px 0 0 0;
       @media ${SCREEN.tablet} {
-        margin: 5px 0 0 0;
+        margin: 14px 0 0 0;
       }
     }
 
@@ -139,6 +145,7 @@ const Footer = styled.footer`
 
     a {
       color: ${COLOR.white};
+      transition: color 0.2s ease-in-out;
       @media ${SCREEN.cursor} {
         &:hover {
           color: ${COLOR.green};
@@ -146,11 +153,11 @@ const Footer = styled.footer`
       }
 
       svg {
-        font-size: 0.95rem;
+        font-size: 0.8rem;
         vertical-align: middle;
         margin: -2px 0 0 0;
         @media ${SCREEN.tablet} {
-          font-size: 1.05rem;
+          font-size: 0.85rem;
         }
       }
     }
@@ -169,21 +176,33 @@ const Home: NextPage = () => {
         <div className="absolute-logo">
           <Logo />
         </div>
-        <div className="inner-wrapper">
-          <Heading as="h1">Mockup website color</Heading>
-          <div className="txt-wrap">
+        <motion.div
+          className="inner-wrapper"
+          variants={animateContainer}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div variants={animateItem}>
+            <Heading as="h1">
+              Mockup website color
+              <br />
+              the fastest way
+            </Heading>
+          </motion.div>
+
+          <motion.div className="txt-wrap" variants={animateItem}>
             <Text>
-              The easiest way, with ready responsive layout.
+              With prebaked responsive layout,
               <br />
               Test your pallete right off the bat!
             </Text>
-          </div>
+          </motion.div>
 
-          <div className="btn-wrap">
+          <motion.div className="btn-wrap" variants={animateItem}>
             <Button href="/editor">GET STARTED</Button>
-          </div>
+          </motion.div>
 
-          <div className="img-wrap">
+          <motion.div className="img-wrap" variants={animateItem}>
             <Image
               src="/hero-artwork.png"
               alt="Artwork"
@@ -192,8 +211,8 @@ const Home: NextPage = () => {
               quality={100}
               priority
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="decor decor--box-top">
           <Boxes />

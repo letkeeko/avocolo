@@ -35,8 +35,8 @@ const Wrapper = styled.div`
     margin: 0 0 30px 0;
   }
 
-  .cursor {
-    cursor: pointer;
+  .default-cursor {
+    cursor: default;
   }
 `;
 

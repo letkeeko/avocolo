@@ -1,7 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import ScrollLock from "react-scrolllock";
 import { PropTypes } from "../{types}/save-and-share.types";
-import { COLOR, SCREEN } from "../../components/variables";
+import {
+  COLOR,
+  SCREEN,
+  animateContainer,
+  animateItem,
+} from "../../components/variables";
 import BlankOverlay from "../blank-overlay";
 import Heading from "../../components/heading";
 import useClipboard from "react-use-clipboard";
@@ -45,8 +52,10 @@ const Wrapper = styled.div`
         text-decoration: underline;
         cursor: pointer;
         transition: color 0.2s ease-in-out;
-        &:hover {
-          color: ${COLOR.green};
+        @media ${SCREEN.cursor} {
+          &:hover {
+            color: ${COLOR.green};
+          }
         }
       }
     }
@@ -75,7 +84,6 @@ const Wrapper = styled.div`
         padding: 10px;
         line-height: 1.35;
         text-align: center;
-
         @media ${SCREEN.tablet} {
           margin: 0 auto 48px auto;
           font-size: 1.2rem;
@@ -191,7 +199,12 @@ export default function SaveAndShare(props: PropTypes) {
     successDuration: 500,
   });
 
-  const { setIsModalShareOpen, setIsModalSelectedColors, selections } = props;
+  const {
+    setIsModalShareOpen,
+    setIsModalColorsOpen,
+    isModalColorsOpen,
+    selections,
+  } = props;
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -222,71 +235,81 @@ export default function SaveAndShare(props: PropTypes) {
 
   return (
     <Wrapper role="dialog">
-      <div className="inner-container">
-        <Heading as="h3">
-          Happy with{" "}
-          <span onClick={() => setIsModalSelectedColors(true)}>
-            selected colors
-          </span>
-          ?
-          <br />
-          Share it with the team or client!
-        </Heading>
-        <form className="form" onSubmit={handleSubmit}>
-          <label className="form__label" htmlFor="name">
-            Name it, as reference*
-          </label>
-          <input
-            className="form__input"
-            type="text"
-            id="name"
-            placeholder="e.g. Project brownish"
-            value={nameInput}
-            onChange={(e) => setNameInput(e.target.value)}
-            required
-          />
-          <Button disabled={isLoading}>
-            {isLoading ? "LOADING..." : "GET A LINK"}
-          </Button>
-        </form>
+      <ScrollLock>
+        <motion.div
+          className="inner-container"
+          variants={animateContainer}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div variants={animateItem}>
+            <Heading as="h3">
+              Happy with{" "}
+              <span onClick={() => setIsModalColorsOpen(true)}>
+                selected colors
+              </span>
+              ?
+              <br />
+              Share it with the team or client!
+            </Heading>
+          </motion.div>
 
-        {isSubmitted && (
-          <div className="result-overlay">
-            <div className="inner-content">
-              <Heading as="h3">Copy link:</Heading>
+          <form className="form" onSubmit={handleSubmit}>
+            <motion.div variants={animateItem}>
+              <label className="form__label" htmlFor="name">
+                Name it, as reference*
+              </label>
+              <input
+                className="form__input"
+                type="text"
+                id="name"
+                placeholder="e.g. Project brownish"
+                value={nameInput}
+                onChange={(e) => setNameInput(e.target.value)}
+                required
+              />
+            </motion.div>
+            <motion.div variants={animateItem}>
+              <Button disabled={isLoading}>
+                {isLoading ? "LOADING..." : "GET A LINK"}
+              </Button>
+            </motion.div>
+          </form>
 
-              <p
-                className="txt-btn"
-                onClick={setCopied}
-                title="Copy to clipboard"
-              >
-                {isCopied ? "Copied!" : `avocolo.com/${uniquePathname}`}
-              </p>
-              <p className="footnote">
-                Tip: Test this link on any color contrast analyser (e.g.{" "}
-                <a
-                  href="https://color.a11y.com"
-                  target="_blank"
-                  rel="noreferrer noopener"
+          {isSubmitted && (
+            <div className="result-overlay">
+              <div className="inner-content">
+                <Heading as="h3">Copy link:</Heading>
+
+                <p
+                  className="txt-btn"
+                  onClick={setCopied}
+                  title="Copy to clipboard"
                 >
-                  color.a11y.com
-                </a>
-                )
-              </p>
+                  {isCopied ? "Copied!" : `avocolo.com/${uniquePathname}`}
+                </p>
+                <p className="footnote">
+                  Tip: Test this link on any color contrast analyser (e.g.{" "}
+                  <a
+                    href="https://color.a11y.com"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    color.a11y.com
+                  </a>
+                  )
+                </p>
+              </div>
             </div>
-          </div>
-        )}
-
-        <div className="close-btn" role="button" onClick={closeAndReset}>
-          <IoMdClose />
-        </div>
-      </div>
-
-      <BlankOverlay
-        backgroundColor="rgba(255,255,255,0.7)"
-        paramValue={false}
-        triggerFunction={setIsModalShareOpen}
-      />
+          )}
+          {!isModalColorsOpen && (
+            <div className="close-btn" role="button" onClick={closeAndReset}>
+              <IoMdClose />
+            </div>
+          )}
+        </motion.div>
+      </ScrollLock>
+      <BlankOverlay backgroundColor="rgba(255,255,255,0.7)" />
     </Wrapper>
   );
 }

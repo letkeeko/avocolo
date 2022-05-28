@@ -170,14 +170,12 @@ export default function Dropdown(props: PropTypes) {
                 role="button"
                 title="Get a new random image"
                 onClick={handleNewImage}
+                style={{ pointerEvents: isLoading ? "none" : "all" }}
               >
                 <span className="icon">
                   <VscRefresh />
                 </span>
-                <span
-                  className="label"
-                  style={{ pointerEvents: isLoading ? "none" : "all" }}
-                >
+                <span className="label">
                   {isLoading ? "Loading..." : "Image"}
                 </span>
               </div>
@@ -316,7 +314,12 @@ export default function Dropdown(props: PropTypes) {
                         handleActiveColorPicker("active_dot_color")
                       }
                     >
-                      <span className="color"></span>
+                      <span
+                        className="color"
+                        style={{
+                          backgroundColor: selection["active_dot_color"],
+                        }}
+                      ></span>
                       <span className="label">Active</span>
                     </div>
                   </div>

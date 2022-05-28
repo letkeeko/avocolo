@@ -123,7 +123,11 @@ const animateItem = {
 };
 
 export default function Panel(props: PropTypes) {
+  // store current active or selected dropdown here
   const [activeDropdown, setActiveDropdown] = useState<string[]>([]);
+
+  // used when page is reloading - just to imitate loading feedback for user
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     selections,
@@ -132,7 +136,7 @@ export default function Panel(props: PropTypes) {
     isSidebarOpen,
     handleReset,
     setIsModalShareOpen,
-    setIsModalSelectedColors,
+    setIsModalColorsOpen,
   } = props;
 
   const handleDropdownClick = (value: string) => {
@@ -237,17 +241,25 @@ export default function Panel(props: PropTypes) {
               <span className="label">Save & share</span>
             </div>
 
-            <div className="btn" onClick={() => setIsModalSelectedColors(true)}>
+            <div className="btn" onClick={() => setIsModalColorsOpen(true)}>
               <span className="icon">
                 <VscSymbolColor />
               </span>
               <span className="label">Current palette</span>
             </div>
-            <div className="btn" onClick={handleReset}>
+            <div
+              className="btn"
+              onClick={() => {
+                handleReset();
+                setIsLoading(true);
+              }}
+            >
               <span className="icon">
                 <VscRedo />
               </span>
-              <span className="label">Reset & reload</span>
+              <span className="label">
+                {isLoading ? "Loading..." : "Reset & reload"}
+              </span>
             </div>
             <Link href="/">
               <a className="btn">

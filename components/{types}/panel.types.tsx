@@ -5,5 +5,5 @@ export type PropTypes = {
   toggleSidebar: () => void;
   handleReset: () => void;
   setIsModalShareOpen: (value: boolean) => void;
-  setIsModalSelectedColors: (value: boolean) => void;
+  setIsModalColorsOpen: (value: boolean) => void;
 };
