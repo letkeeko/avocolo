@@ -234,20 +234,20 @@ export default function Panel(props: PropTypes) {
               <span className="icon">
                 <VscSave />
               </span>
-              <span className="label">Save and share</span>
+              <span className="label">Save & share</span>
             </div>
 
             <div className="btn" onClick={() => setIsModalSelectedColors(true)}>
               <span className="icon">
                 <VscSymbolColor />
               </span>
-              <span className="label">Current</span>
+              <span className="label">Current palette</span>
             </div>
             <div className="btn" onClick={handleReset}>
               <span className="icon">
                 <VscRedo />
               </span>
-              <span className="label">Reset</span>
+              <span className="label">Reset & reload</span>
             </div>
             <Link href="/">
               <a className="btn">

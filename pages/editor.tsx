@@ -35,12 +35,12 @@ const Editor: NextPage = () => {
 
   const debounce = useDebouncedCallback((value) => {
     setSelections(value);
-    saveToLocalStorage(value);
+    saveToLocalStorage("unsaved", value);
   }, 100);
 
   useEffect(() => {
-    // to be added
     const unsavedData = localStorage.getItem("unsaved");
+
     if (!!unsavedData) {
       setSelections(JSON.parse(unsavedData));
     } else {
@@ -50,14 +50,13 @@ const Editor: NextPage = () => {
 
   const handleChange = (updatedValue: object) => {
     debounce(updatedValue);
-    // setSelections({ ...selections, ...updatedValue });
   };
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const handleReset = () => {
-    localStorage.setItem("unsaved", "");
-    setSelections(defaultSelections);
+    localStorage.clear();
+    window.location.href = "editor";
     scrollToTop();
   };
 
@@ -66,7 +65,7 @@ const Editor: NextPage = () => {
       <SEO
         title="Editor | Avocolo"
         description="The easiest way, with ready responsive layout. Test your pallete right off the bat!"
-        pathname=""
+        pathname="/editor"
       />
       <Wrapper isSidebarOpen={isSidebarOpen}>
         <Panel

@@ -114,7 +114,11 @@ const getUniqueHexColors = (obj: { [key: string]: any }): string[] => {
 
   // returns array of unique value with #
   const onlyUniqueWithHex = (value: any, index: any, self: any) => {
-    return value && value.indexOf("#") === 0 && self.indexOf(value) === index;
+    return (
+      typeof value === "string" &&
+      value.indexOf("#") === 0 &&
+      self.indexOf(value) === index
+    );
   };
 
   if (!Array.isArray(toArrayFromObject)) return [];

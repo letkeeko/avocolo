@@ -104,7 +104,7 @@ export default function Dropdown(props: PropTypes) {
     // modify current object
     selections[objKey] = { ...selection, [key]: val };
 
-    handleChange({ ...selections, selection });
+    handleChange({ ...selections });
   };
 
   const isDropdownOpen = activeDropdown.includes(objKey);
