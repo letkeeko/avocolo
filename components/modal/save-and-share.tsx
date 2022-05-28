@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import ScrollLock from "react-scrolllock";
 import { PropTypes } from "../{types}/save-and-share.types";
+import { supabase } from "../../lib/init-supabase";
 import {
   COLOR,
   SCREEN,
@@ -35,7 +36,6 @@ const Wrapper = styled.div`
     text-align: center;
     box-shadow: 0 10px 20px -5px rgba(58, 58, 98, 0.2);
     width: calc(100% - 24px);
-    overflow: auto;
     @media ${SCREEN.tablet} {
       width: calc(100% - 60px);
       padding: 60px;
@@ -171,17 +171,17 @@ const getRandomString = () => {
   return Math.random().toString(36).substring(2);
 };
 
-const getUniquePathname = (str: string = "avocolo") => {
+const getUniquePathname = (title: string = "avocolo") => {
   const randomString = getRandomString();
 
-  const slug = slugify(str, {
+  const slugTitle = slugify(title, {
     replacement: "-",
     remove: undefined,
     lower: true,
     strict: true,
   });
 
-  const shuffledString = slug
+  const shuffledString = slugTitle
     .split("")
     .sort(() => 0.5 - Math.random())
     .join("")
@@ -206,23 +206,55 @@ export default function SaveAndShare(props: PropTypes) {
     selections,
   } = props;
 
+  const saveToDatabase = async (input: {
+    id: string;
+    title: string;
+    selections: object;
+  }) => {
+    setIsLoading(true);
+    const { id, title, selections } = input;
+
+    const { data, error } = await supabase
+      .from("user_selections")
+      .insert([{ id, title, selections }]);
+
+    if (data) {
+      setIsLoading(false);
+      setSubmitted(true);
+      setNameInput("");
+
+      // to be used on success feedback
+      setUniquePathname(data[0].id);
+    }
+
+    if (error) {
+      setIsLoading(false);
+      setNameInput("");
+
+      // duplicate id - by rare chance the generated id is already exist
+      if (error.code === "23505") {
+        alert("Could you try again with a different name?");
+        return;
+      }
+
+      alert("Error saving it, Check console or try again later.");
+      console.error(error);
+    }
+  };
+
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     if (!nameInput) {
-      alert("can't be empty");
+      alert("Reference name can't be empty");
       return;
     }
 
-    setIsLoading(true);
-    setNameInput("");
-    setTimeout(() => {
-      setSubmitted(true);
-      setUniquePathname(getUniquePathname(nameInput));
-    }, 3000);
-
-    // save to database
-    console.log(nameInput, selections);
+    saveToDatabase({
+      id: getUniquePathname(nameInput),
+      title: nameInput,
+      selections,
+    });
   };
 
   const closeAndReset = () => {
@@ -277,8 +309,8 @@ export default function SaveAndShare(props: PropTypes) {
           </form>
 
           {isSubmitted && (
-            <div className="result-overlay">
-              <div className="inner-content">
+            <motion.div className="result-overlay" variants={animateContainer}>
+              <motion.div className="inner-content" variants={animateItem}>
                 <Heading as="h3">Copy link:</Heading>
 
                 <p
@@ -293,14 +325,14 @@ export default function SaveAndShare(props: PropTypes) {
                   <a
                     href="https://color.a11y.com"
                     target="_blank"
-                    rel="noreferrer noopener"
+                    rel="noopener noreferrer"
                   >
                     color.a11y.com
                   </a>
                   )
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           )}
           {!isModalColorsOpen && (
             <div className="close-btn" role="button" onClick={closeAndReset}>
