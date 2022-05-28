@@ -169,7 +169,7 @@ const Home: NextPage = () => {
     <Layout>
       <SEO
         title="Mockup Website Color | Avocolo"
-        description="The easiest way, with ready responsive layout. Test your pallete right off the bat!"
+        description="Test your pallete right off the bat. With ready responsive layout. Mockup website color the fastest way!"
         pathname=""
       />
       <Wrapper>
@@ -192,9 +192,9 @@ const Home: NextPage = () => {
 
           <motion.div className="txt-wrap" variants={animateItem}>
             <Text>
-              With prebaked responsive layout,
+              Test your pallete right off the bat.
               <br />
-              Test your pallete right off the bat!
+              With ready responsive layout.
             </Text>
           </motion.div>
 

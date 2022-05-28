@@ -318,7 +318,7 @@ export default function SaveAndShare(props: PropTypes) {
                   onClick={setCopied}
                   title="Copy to clipboard"
                 >
-                  {isCopied ? "Copied!" : `avocolo.com/${uniquePathname}`}
+                  {isCopied ? "Copied!" : `avocolo.com/v?${uniquePathname}`}
                 </p>
                 <p className="footnote">
                   Tip: Test this link on any color contrast analyser (e.g.{" "}
