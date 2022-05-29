@@ -10,8 +10,55 @@ import Heading from "../components/heading";
 import Image from "next/image";
 import Text from "../components/text";
 import TemplateOne from "../template/template";
+import { VscTag, VscSymbolColor, VscChromeClose } from "react-icons/vsc";
+import ModalSelectedColors from "../components/modal/selected-colors";
 
 const Wrapper = styled.main`
+  .notification-bar {
+    border-bottom: 1px solid #e8e8e8;
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    @media ${SCREEN.tablet} {
+      justify-content: flex-start;
+      padding: 12px 48px;
+    }
+    @media ${SCREEN.desktop} {
+      padding: 12px 24px;
+    }
+
+    .btn {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      @media ${SCREEN.tablet} {
+        margin: 0 90px 0 0;
+      }
+
+      .icon {
+        margin: 0 8px -4px 0;
+      }
+
+      &--txt {
+        cursor: default;
+        display: block;
+        max-width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @media ${SCREEN.tablet} {
+          max-width: 200px;
+        }
+
+        .icon {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
   .site-wrapper {
     text-align: center;
     padding: 70px 0 0 0;
@@ -33,8 +80,10 @@ const Wrapper = styled.main`
 const View: NextPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selections, setSelections] = useState(null);
-  const [title, setTitle] = useState(null);
+  const [title, setTitle] = useState("Avocolo");
+  const [isTopNotification, setIsTopNotification] = useState(true);
   const [isNoneFound, setIsNoneFound] = useState(false);
+  const [isModalColorsOpen, setIsModalColorsOpen] = useState(false);
 
   useEffect(() => {
     // get the id from url
@@ -65,17 +114,46 @@ const View: NextPage = () => {
     }
   };
 
-  const titleTag = title ? title : "Avocolo";
-
   return (
     <Layout>
       <SEO
-        title={titleTag}
-        description="The easiest way, with ready responsive layout. Test your pallete right off the bat!"
+        title={title}
+        description="Mockup colors the fastest way, with ready responsive layout. Test your pallete right off the bat!"
         pathname="/v"
         isNoIndex
       />
+
       <Wrapper>
+        {!!selections && isTopNotification && (
+          <div className="notification-bar">
+            <div className="btn btn--txt">
+              <span className="icon">
+                <VscTag />
+              </span>
+              <span className="label">{title}</span>
+            </div>
+            <div className="btn" onClick={() => setIsModalColorsOpen(true)}>
+              <span className="icon">
+                <VscSymbolColor />
+              </span>
+              <span className="label">Palette</span>
+            </div>
+            <div className="btn" onClick={() => setIsTopNotification(false)}>
+              <span className="icon">
+                <VscChromeClose />
+              </span>
+              <span className="label">Close</span>
+            </div>
+          </div>
+        )}
+
+        {isModalColorsOpen && (
+          <ModalSelectedColors
+            setIsModalColorsOpen={setIsModalColorsOpen}
+            selections={selections || {}}
+          />
+        )}
+
         {isLoading && (
           <div className="site-wrapper">
             <Heading as="h3">Please wait...</Heading>

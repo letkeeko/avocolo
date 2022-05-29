@@ -21,7 +21,7 @@ Mockup website colors 🎨
 
 - ✨ Ready responsive layout
 - 🖌️ Color picker
-- 📸 Generate a random image
+- 📸 Reupdate image with a click
 - 🔗 Generate a unique link to share
 
 ## Tech Stack
