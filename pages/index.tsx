@@ -168,8 +168,8 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <SEO
-        title="Mockup Website Color | Avocolo"
-        description="Test your pallete right off the bat. With ready responsive layout. Mockup website color the fastest way!"
+        title="Mockup Website Colors | Avocolo"
+        description="Test your pallete right off the bat. With ready responsive layout. Mockup website colors the fastest way!"
         pathname=""
       />
       <Wrapper>
@@ -184,7 +184,7 @@ const Home: NextPage = () => {
         >
           <motion.div variants={animateItem}>
             <Heading as="h1">
-              Mockup website color
+              Mockup website colors
               <br />
               the fastest way
             </Heading>

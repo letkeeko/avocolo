@@ -324,15 +324,7 @@ export default function SaveAndShare(props: PropTypes) {
                   {isCopied ? "Copied!" : `avocolo.com/v?${uniquePathname}`}
                 </p>
                 <p className="footnote">
-                  Tip: Test this link on any color contrast analyser (e.g.{" "}
-                  <a
-                    href="https://color.a11y.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    color.a11y.com
-                  </a>
-                  )
+                  Tip: Test this link on a color contrast analyser
                 </p>
               </motion.div>
             </motion.div>
