@@ -63,6 +63,8 @@ const Wrapper = styled(motion.div)`
 
     &--trigger {
       cursor: pointer;
+      display: flex;
+      align-items: center;
     }
 
     &--active {
