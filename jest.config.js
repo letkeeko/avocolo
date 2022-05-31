@@ -11,6 +11,7 @@ const customJestConfig = {
   moduleDirectories: ["node_modules", "<rootDir>/"],
   testEnvironment: "jest-environment-jsdom",
   preset: "ts-jest",
+  testRegex: "(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$",
   transform: {
     "^.+\\.(ts|tsx)?$": "ts-jest",
   },
